@@ -1,0 +1,13 @@
+<tal:block i18n:domain="zojax.blogger">
+  <h2 i18n:translate="">Categories</h2>
+
+  <tal:block tal:define="context python:view.getContent()['category']">
+    <div class="z-form-fieldset">
+      <tal:block content="structure provider:content.container.contents" />
+    </div>
+  </tal:block>
+
+  <tal:block tal:repeat="context view/forms"
+	     tal:content="structure pagelet:form" />
+  <br />
+</tal:block>

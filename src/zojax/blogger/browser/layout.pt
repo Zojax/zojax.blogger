@@ -1,0 +1,3 @@
+<div id="z-portal-viewspace">
+  <div class="blogger-content" tal:content="structure view/render" />
+</div>

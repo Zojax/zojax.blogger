@@ -1,0 +1,4 @@
+<h1 class="z-content-title">
+  <tal:block content="view/blog/title" />,
+  <tal:block content="view/month" />
+</h1>

@@ -1,0 +1,12 @@
+<div class="blogger-listing" i18n:domain="zojax.blogger">
+  <tal:block content="structure view/batch/@@pagelet/batch.view" />
+
+  <div tal:repeat="idx view/batch"
+      tal:attributes="class python:repeat['idx'].odd() and 'odd' or 'even'">
+    <tal:block content="structure python:view.getPostView(idx)" />
+  </div>
+
+  <div tal:condition="not:view/batch" i18n:translate="">
+    There are no blog posts in this blog.
+  </div>
+</div>

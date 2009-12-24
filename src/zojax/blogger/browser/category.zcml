@@ -1,0 +1,14 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   i18n_domain="zojax.blogger">
+
+  <zojax:pagelet
+     name="index.html"
+     for="..category.Category"
+     template="category.pt"
+     class=".category.CategoryView"
+     permission="zope.View" />
+
+</configure>

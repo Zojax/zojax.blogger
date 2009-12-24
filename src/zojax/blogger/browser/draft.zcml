@@ -1,0 +1,25 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   i18n_domain="zojax.blogger">
+
+  <!-- blog category step -->
+  <zojax:pagelet
+     name="category"
+     type="wizard.step"
+     for="..interfaces.IBlog
+	  zojax.content.forms.interfaces.IEditContentWizard"
+     template="draftcategory.pt"
+     class=".draft.BlogCategoryStep"
+     provides="zojax.layoutform.interfaces.IPageletFormView"
+     permission="zojax.ModifyContent"
+     weight="150" />
+
+  <zojax:pagelet
+     name="add.category"
+     type="form.subform"
+     for="..interfaces.IBlog .draft.BlogCategoryStep"
+     class=".draft.AddBlogCategory" />
+
+</configure>

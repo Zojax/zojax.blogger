@@ -1,0 +1,14 @@
+<div class="z-portlet portlet-blogger-tags" i18n:domain="zojax.blogger">
+  <h2 class="z-portlet-header" i18n:translate="">
+    Blog tags
+  </h2>
+  <div class="z-portlet-body">
+    <div class="z-portlet-item">
+      <div tal:define="tags context/listTags; url string:${context/blog_url}/tags">
+	<tal:block tal:repeat="item tags">
+	  <span tal:attributes="style string:font-size: ${item/weight}%;;;"><a tal:content="item/tag" tal:attributes="href string:$url/${item/tag}/"></a></span>
+	</tal:block>
+      </div>
+    </div>
+  </div>
+</div>

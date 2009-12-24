@@ -1,0 +1,59 @@
+<div class="blogger-listing" i18n:domain="zojax.blogger">
+  <div class="even">
+    <div class="blogger-post">
+
+      <span class="blogger-avatar">
+	<a tal:attributes="href view/profile_url" tal:omit-tag="not:view/profile_url">
+	  <img tal:attributes="title string:Profile of ${view/author};src view/avatar_url" />
+	</a>
+      </span>
+
+      <h3 class="blogger-post-heading">
+	<tal:block tal:content="context/title" />
+	<span class="blogger-post-location" tal:condition="view/blog_url" i18n:translate="">
+	  in
+	  <a href="#" tal:attributes="href string:${view/blog_url}/"
+	     tal:content="view/blog_title" i18n:name="blog">Blog</a>
+	</span>
+      </h3>
+
+      <div class="blogger-post-byline">
+	<tal:block i18n:translate="">Posted by</tal:block>
+	<a href="#1" title="See author's profile"
+	   tal:attributes="href view/profile_url"
+	   tal:content="view/author" tal:omit-tag="not:view/profile_url">Lael Powers</a>
+	<span class="blogger-post-date" tal:condition="context/date|nothing"
+	      tal:content="structure formatter:fancyDatetime,medium:context/date">Dec 16, 2008</span>
+      </div>
+      
+      <div class="blogger-post-content" tal:content="structure context/text/cooked|nothing">
+	Post content here
+      </div>
+      
+      <ul class="blogger-footer" tal:condition="view/footer">
+	<li class="blogger-footer-categories" tal:condition="view/categories">
+	  <tal:block tal:repeat="category view/categories">
+	    <a tal:content="category/title"
+	       tal:attributes="href string:${view/blog_url}/category/${category/name}/">
+	      Category</a><tal:block condition="not: repeat/category/end">,</tal:block>
+	  </tal:block>
+	</li>
+	
+	<li class="blogger-footer-tags" tal:condition="view/tags_list">
+	  <tal:block tal:repeat="tag view/tags_list">
+	    <a href="#tag"  tal:content="tag"
+	       tal:attributes="href string:${view/blog_url}/tags/${tag/lower}/">
+	      Tag1</a><tal:block condition="not: repeat/tag/end">,</tal:block>
+	  </tal:block>
+	</li>
+	
+	<li class="blogger-footer-comments"
+	    tal:condition="view/discussible" i18n:translate="">
+	  <tal:block i18n:name="number" content="view/comments" /> comments
+	</li>
+      </ul>
+      
+    </div>
+  </div>
+</div>
+<br />

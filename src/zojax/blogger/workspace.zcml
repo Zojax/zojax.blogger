@@ -1,0 +1,42 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   i18n_domain="zojax.blogger">
+
+  <zojax:reservedNames
+     names="blog"
+     for="zojax.content.space.interfaces.IContentSpace" />
+
+  <zojax:content
+     name="workspace.blog"
+     title="Blog Workspace"
+     class=".workspace.BloggerWorkspace"
+     schema=".interfaces.IBloggerWorkspace"
+     contains=".interfaces.IBlogPostType"
+     type="zojax.content.type.interfaces.IInactiveType" />
+
+  <!-- blogger workspace -->
+  <class class=".workspace.BloggerWorkspace">
+    <implements interface="zojax.content.type.interfaces.IRenameNotAllowed" />
+    <implements interface="zojax.content.type.interfaces.ISearchableContent" />
+    <implements interface="zojax.content.type.interfaces.IUnremoveableContent" />
+    <implements interface="zojax.content.type.interfaces.IContainerContentsAware" />
+    <implements interface="zojax.content.tagging.interfaces.IContentTaggable" />
+
+    <require
+       permission="zope.Public"
+       interface=".interfaces.IBloggerWorkspace
+		  zope.app.container.interfaces.IReadContainer" />
+    <require
+       permission="zojax.ModifyContent"
+       set_schema=".interfaces.IBloggerWorkspace"
+       interface="zope.app.container.interfaces.IWriteContainer" />
+  </class>
+
+  <!-- blog workspace factory -->
+  <adapter
+     name="blog"
+     factory=".workspace.BloggerWorkspaceFactory" />
+
+</configure>

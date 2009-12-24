@@ -1,0 +1,202 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   i18n_domain="zojax.blogger">
+
+  <!-- category -->
+  <include file="category.zcml" />
+
+  <!-- tags -->
+  <include file="tags.zcml" />
+
+  <!-- actions -->
+  <include file="actions.zcml" />
+
+  <!-- draft -->
+  <include file="draft.zcml" />
+
+  <!-- layout -->
+  <zojax:layout
+     name="workspace"
+     layout="workspace"
+     for="..interfaces.IBloggerWorkspace"
+     template="layout.pt" />
+
+  <zojax:pageelement
+     name="content.header"
+     for="..interfaces.IBlog"
+     template="contentheader.pt"
+     class="zojax.content.browser.contentheader.ContentHeader" />
+
+  <!-- blog -->
+  <browser:defaultView
+     name="index.html"
+     for="..interfaces.IBlog" />
+
+  <zojax:pagelet
+     name="index.html"
+     for="..interfaces.IBlog"
+     template="blog.pt"
+     class=".blog.BlogView"
+     provides="zojax.content.type.interfaces.IContentView"
+     permission="zope.View" />
+
+  <!-- Year -->
+  <browser:defaultView
+     name="index.html"
+     for="..date.Year" />
+
+  <zojax:pagelet
+     name="index.html"
+     for="..date.Year"
+     template="blog.pt"
+     class=".blog.BlogView"
+     provides="zojax.content.type.interfaces.IContentView"
+     permission="zope.View" />
+
+  <zojax:pageelement
+     name="content.header"
+     for="..interfaces.IYear"
+     template="contentheader.pt"
+     class="zojax.content.browser.contentheader.ContentHeader" />
+
+  <!-- Month -->
+  <browser:defaultView
+     name="index.html"
+     for="..date.Month" />
+
+  <zojax:pagelet
+     name="index.html"
+     for="..date.Month"
+     template="blog.pt"
+     class=".blog.BlogView"
+     provides="zojax.content.type.interfaces.IContentView"
+     permission="zope.View" />
+
+  <adapter factory=".breadcrumbs.MonthBreadcrumb" />
+
+  <zojax:pageelement
+     name="content.header"
+     for="..interfaces.IMonth"
+     template="contentheader.pt"
+     class="zojax.content.browser.contentheader.ContentHeader" />
+
+  <zojax:pageelement
+     name="content.header.title"
+     for="..interfaces.IMonth"
+     template="monthtitle.pt"
+     class=".blog.MonthTitle"
+     manager="zojax.content.browser.interfaces.IContentTitle" />
+
+  <!-- Blog post view -->
+  <zojax:pagelet
+     name="index.html"
+     layout="viewspace"
+     for="..interfaces.IBlogPost"
+     template="blogpost.pt"
+     class=".post.BlogPostView"
+     provides="zojax.content.type.interfaces.IContentView"
+     permission="zope.View" />
+
+  <zojax:pagelet
+     name="blog"
+     type="blogger.post"
+     for="..interfaces.IBlogPost"
+     template="post.pt"
+     class=".post.PostBlogView"
+     permission="zope.View" />
+
+  <zojax:pagelet
+     name="post"
+     type="blogger.post"
+     for="..interfaces.IBlogPost"
+     template="post.pt"
+     class=".post.PostView"
+     permission="zope.View" />
+
+  <zojax:pagelet
+     name="announce"
+     type="blogger.post"
+     for="..interfaces.IBlogPost"
+     template="postannounce.pt"
+     class=".post.PostAnnounceView"
+     permission="zope.View" />
+
+  <zojax:pagelet
+     type="content.type.preview"
+     for="..interfaces.IBlogPost"
+     template="postpreview.pt"
+     class=".post.PostView"
+     permission="zope.View" />
+
+  <!-- edit content step -->
+  <zojax:pagelet
+     name="basic"
+     type="form.subform"
+     for="..interfaces.IBlogPost
+	  zojax.content.forms.interfaces.IContentStep"
+     class=".post.PostContent"
+     weight="10" />
+
+  <!-- notification email -->
+  <zojax:mailtemplate
+     for="..interfaces.IBlog ..interfaces.IBlogPost"
+     contentType="text/html"
+     template="template.pt"
+     class=".template.BlogPostNotificationMail"
+     provides="zojax.content.notifications.interfaces.INotificationMailTemplate" />
+
+  <zojax:mailtemplate
+     for="..interfaces.IBlog
+	  ..interfaces.IBlogPost
+	  zojax.content.discussion.interfaces.IComment"
+     contentType="text/html"
+     template="templatecomment.pt"
+     class=".template.BlogPostCommentNotificationMail"
+     provides="zojax.content.notifications.interfaces.INotificationMailTemplate" />
+
+  <!-- product -->
+  <zojax:pagelet
+     name="index.html"
+     for="..interfaces.IBloggerProduct"
+     class="zojax.controlpanel.browser.wizard.ConfigletEditWizard"
+     permission="zojax.ManageProducts" />
+
+  <!-- icons -->
+  <browser:icon
+     name="zmi_icon"
+     file="icons/blog.png"
+     for="..interfaces.IBlog" />
+
+  <browser:icon
+     name="zmi_icon"
+     file="icons/blog.png"
+     for="..interfaces.IBlogPost" />
+
+  <browser:icon
+     name="zmi_icon"
+     file="icons/blog.png"
+     for="zojax.content.content_blogpost" />
+
+  <browser:icon
+     name="zmi_icon"
+     file="icons/blog.png"
+     for="zojax.content.workspace_blog" />
+
+  <browser:icon
+     name="zmi_icon"
+     file="icons/blog.png"
+     for="..interfaces.IBloggerWorkspace" />
+
+  <browser:icon
+     name="zmi_icon"
+     file="icons/blog.png"
+     for="..interfaces.IBloggerWorkspaceFactory" />
+
+  <browser:icon
+     name="zmi_icon"
+     file="icons/blog.png"
+     for="..interfaces.IBlogPostsRSSFeed" />
+
+</configure>

@@ -1,0 +1,51 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   i18n_domain="zojax.blogger">
+
+  <!-- category -->
+  <zojax:content
+     title="Category"
+     schema=".interfaces.ICategory"
+     name="content.blog.category"
+     class=".category.Category"
+     containers="content.blog.categorycontainer" />
+
+  <class class=".category.Category">
+    <implements interface="zojax.ownership.interfaces.IInheritOwnership" />
+
+    <require
+       permission="zope.Public"
+       attributes="entries"
+       interface=".interfaces.ICategory" />
+
+    <require
+       permission="zojax.ModifyContent"
+       set_schema=".interfaces.ICategory" />
+  </class>
+
+  <!-- category container -->
+  <zojax:content
+     title="Category container"
+     schema=".interfaces.ICategoryContainer"
+     name="content.blog.categorycontainer"
+     class=".category.CategoryContainer"
+     type="zojax.content.type.interfaces.IInactiveType"
+     contains="content.blog.category" />
+
+  <class class=".category.CategoryContainer">
+    <implements interface="zojax.ownership.interfaces.IInheritOwnership" />
+    <implements interface="zojax.content.type.interfaces.IUnremoveableContent" />
+
+    <require
+       permission="zope.Public"
+       interface=".interfaces.ICategoryContainer
+		  zojax.content.type.interfaces.IItem
+		  zope.app.container.interfaces.IReadContainer" />
+    <require
+       permission="zojax.ModifyContent"
+       set_schema=".interfaces.ICategoryContainer"
+       interface="zope.app.container.interfaces.IWriteContainer" />
+  </class>
+
+</configure>

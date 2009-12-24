@@ -1,0 +1,15 @@
+<h1 class="z-content-title">
+  <tal:block content="view/blog/title" />,
+  <tal:block content="context/__name__" />
+</h1>
+
+<div class="blogger-listing">
+  <tal:block content="structure view/batch/@@pagelet/batch.view" />
+
+  <div tal:repeat="idx view/batch"
+       tal:attributes="class python:repeat['idx'].odd() and 'odd' or 'even'">
+    <tal:block define="entry python:view.getPost(idx)">
+      <tal:block content="structure entry/@@pagelet/blogger.post+post" />
+    </tal:block>
+  </div>
+</div>

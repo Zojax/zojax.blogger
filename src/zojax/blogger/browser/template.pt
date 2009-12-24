@@ -1,0 +1,15 @@
+<h4>
+  <a tal:attributes="href view/url" tal:content="view/post/title"></a>
+  <small>by <tal:block content="view/author"/></small>
+</h4>
+<div tal:content="structure view/text"></div>
+<br />
+<hr />
+<div>
+  Blog: <a tal:attributes="href string:${view/url}../"
+	   tal:content="context/title"></a>
+</div>
+<div>
+  Site: <a tal:attributes="href string:${view/site/@@absolute_url}/"
+	   tal:content="view/site/title"></a>
+</div>

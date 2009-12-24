@@ -1,0 +1,36 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   i18n_domain="zojax.blogger">
+
+  <class class=".tags.BlogTags">
+    <implements
+       interface="zojax.content.type.interfaces.IRenameNotAllowed" />
+    <implements
+       interface="zojax.content.type.interfaces.IUnremoveableContent" />
+
+    <require
+       permission="zope.Public"
+       interface=".interfaces.IBlogTags" />
+    <require
+       permission="zojax.ModifyContent"
+       interface=".interfaces.IBlogTagsManager" />
+  </class>
+
+  <class class=".tags.BlogTag">
+    <allow
+       attributes="entries"
+       interface="zope.location.interfaces.ILocation" />
+  </class>
+
+  <!-- publisher -->
+  <adapter
+     for=".interfaces.IBlogTags *"
+     factory="z3c.traverser.traverser.PluggableTraverser"
+     provides="zope.publisher.interfaces.IPublishTraverse" />
+
+  <subscriber
+     factory=".tags.BlogTagsPublisher"
+     provides="z3c.traverser.interfaces.ITraverserPlugin" />
+
+</configure>

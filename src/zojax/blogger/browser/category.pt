@@ -1,0 +1,19 @@
+<h1 class="z-content-title">
+  <tal:block content="view/blog/title" />,
+  <tal:block content="context/title" />
+</h1>
+
+<div class="blogger-listing" i18n:domain="zojax.blogger">
+  <tal:block content="structure view/batch/@@pagelet/batch.view" />
+
+  <div tal:repeat="idx view/batch"
+       tal:attributes="class python:repeat['idx'].odd() and 'even' or 'odd'">
+    <tal:block define="entry python:view.getPost(idx)">
+      <tal:block content="structure entry/@@pagelet/blogger.post+post" />
+    </tal:block>
+  </div>
+
+  <div tal:condition="not:view/batch" i18n:translate="">
+    There are no blogs posts in this category.
+  </div>
+</div>

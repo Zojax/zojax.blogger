@@ -1,0 +1,191 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:i18n="http://namespaces.zope.org/i18n"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   i18n_domain="zojax.blogger">
+
+  <permission
+     id="zojax.AddBlogPost"
+     title="Add blog post"
+     description="Allow submit blog post to blog." />
+
+  <permission
+     id="zojax.SubmitBlogPost"
+     title="Submit blog post"
+     description="Allow submit blog post to blog." />
+
+  <permission
+     id="zojax.RetractBlogPost"
+     title="Retract blog post"
+     description="Allow retract blog post." />
+
+  <zojax:product
+     name="blogger"
+     title="Blogger"
+     description="Blogs for zojax."
+     schema=".interfaces.IBloggerProduct"
+     configurable="true" />
+
+  <interface
+     name="Blog post"
+     interface=".interfaces.IBlogPostType"
+     type="zojax.content.type.interfaces.IContentTypeType" />
+
+  <zojax:pageletType
+     name="blogger.post"
+     interface=".interfaces.IBlogPostView" />
+
+  <registerIn registry="zojax.product.blogger">
+    <adapter factory=".sized.BlogSized" />
+
+    <!-- post events handlers -->
+    <subscriber handler=".blog.blogAdded" />
+    <subscriber handler=".blog.blogPostMoved" />
+    <subscriber handler=".blog.blogPostRemoved" />
+    <subscriber handler=".blog.blogPostModified" />
+
+    <!-- blog post -->
+    <include file="post.zcml" />
+
+    <!-- blog categories -->
+    <include file="category.zcml" />
+
+    <!-- date -->
+    <include file="date.zcml" />
+
+    <!-- tags -->
+    <include file="tags.zcml" />
+
+    <!-- workspace -->
+    <include file="workspace.zcml" />
+
+    <!-- notifications -->
+    <include file="notifications.zcml" />
+
+    <!-- browser -->
+    <include package=".browser" />
+
+    <!-- portlets -->
+    <include package=".portlets" />
+
+    <!--mailin -->
+    <include package=".mailin" />
+
+    <!-- base blog -->
+    <class class=".blog.BaseBlog">
+      <implements interface="zojax.cache.interfaces.IVisibleContext" />
+      <implements interface="zojax.catalog.interfaces.ISearchContext" />
+      <implements interface="zojax.extensions.interfaces.IExtensible" />
+      <implements interface="zojax.ownership.interfaces.IInheritOwnership" />
+    </class>
+
+    <!-- permissions -->
+    <interface
+       name="Blog permissions"
+       interface=".interfaces.IBloggerPermissions"
+       type="zojax.security.interfaces.IPermissionCategoryType" />
+
+    <zojax:permission
+       permission="zojax.AddBlogPost"
+       category=".interfaces.IBloggerPermissions" />
+
+    <zojax:permission
+       permission="zojax.SubmitBlogPost"
+       category=".interfaces.IBloggerPermissions" />
+
+    <zojax:permission
+       permission="zojax.RetractBlogPost"
+       category=".interfaces.IBloggerPermissions" />
+
+    <zojax:contentpermission
+       permission="zojax.AddBlogPost"
+       for="zojax.content.space.interfaces.ISpace"
+       workspace="blog"
+       managepermission="zojax.ManageContentPermission"
+       class="zojax.content.space.permission.SpacePermission"
+       category=".interfaces.IBloggerPermissions"
+       provides="zojax.content.space.interfaces.ISpacePermission" />
+
+    <zojax:contentpermission
+       permission="zojax.SubmitBlogPost"
+       for="zojax.content.space.interfaces.ISpace"
+       workspace="blog"
+       managepermission="zojax.ManageContentPermission"
+       class="zojax.content.space.permission.SpacePermission"
+       category=".interfaces.IBloggerPermissions"
+       provides="zojax.content.space.interfaces.ISpacePermission" />
+
+    <zojax:contentpermission
+       permission="zojax.RetractBlogPost"
+       for="zojax.content.space.interfaces.ISpace"
+       workspace="blog"
+       managepermission="zojax.ManageContentPermission"
+       class="zojax.content.space.permission.SpacePermission"
+       category=".interfaces.IBloggerPermissions"
+       provides="zojax.content.space.interfaces.ISpacePermission" />
+
+    <!-- blog pemrission modified handler -->
+    <subscriber
+       factory=".permission.bloggerPermissionModified" 
+       provides="zojax.content.permissions.interfaces.IPermissionContentTypes"/>
+
+    <!-- blog post cache tag -->
+    <subscriber
+       for=".interfaces.IBlogPost
+	    zope.lifecycleevent.interfaces.IObjectModifiedEvent"
+       handler=".cache.blogPostHandler" />
+
+    <subscriber
+       for=".interfaces.IBlogPost
+	    zope.app.container.interfaces.IObjectAddedEvent"
+       handler=".cache.blogPostHandler" />
+
+    <subscriber
+       for=".interfaces.IBlogPost
+	    zope.app.container.interfaces.IObjectRemovedEvent"
+       handler=".cache.blogPostHandler" />
+
+    <!-- comment cache tag -->
+    <subscriber handler=".cache.commentsHandler" />
+
+    <!-- comments rss feed -->
+    <adapter
+       name="comments"
+       factory=".feeds.BlogCommentsFeed" />
+
+    <class class=".feeds.BlogCommentsFeed">
+      <require
+	 permission="zope.View"
+	 interface="zojax.content.feeds.interfaces.IFeed" />
+    </class>
+
+    <!-- recent posts rss feed -->
+    <adapter
+       name="blogposts"
+       factory=".feeds.BlogPostsRSSFeed" />
+
+    <adapter
+       name="blogposts"
+       for=".interfaces.IBlog"
+       factory=".feeds.BlogPostsRSSFeed" />
+
+    <class class=".feeds.BlogPostsRSSFeed">
+      <require
+	 permission="zope.View"
+	 interface="zojax.content.feeds.interfaces.IFeed" />
+    </class>
+
+  </registerIn>
+
+  <!-- vocabularies -->
+  <utility
+     name="zojax.blogger-categories"
+     factory=".vocabulary.CategoriesVocabulary" />
+
+  <!-- styles -->
+  <include package=".browser" file="styles.zcml" />
+
+  <!-- translations -->
+  <i18n:registerTranslations directory="locales"/>
+
+</configure>
