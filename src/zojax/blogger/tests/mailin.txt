@@ -1,0 +1,91 @@
+===========================
+Blogger Mail-in destination
+===========================
+
+  >>> from email.MIMEText import MIMEText
+
+  >>> from zope import component, interface, event
+  >>> from zope.interface.verify import verifyObject
+  >>> from zope.app.component.hooks import getSite, setSite
+  >>> from zope.publisher.browser import TestRequest
+  >>> from zope.lifecycleevent import ObjectModifiedEvent
+
+  >>> from zojax.mailin.interfaces import IMailIn, IMailInDestination
+  >>> from zojax.blogger.interfaces import IBloggerProduct
+  >>> from zojax.blogger.mailin.interfaces import IBloggerDestination
+
+  >>> root = getRootFolder()
+  >>> setSite(root)
+  >>> sm = root.getSiteManager()
+
+  >>> product = sm.getUtility(IBloggerProduct)
+  >>> product.install()
+
+  >>> mailin = IBloggerDestination(product)
+
+  >>> mailin.enabled = True
+  >>> mailin.address = 'blogger@zojax.net'
+
+  >>> mailin is sm.getUtility(IMailInDestination, 'blogger@zojax.net')
+  True
+
+  >>> root['space'].workspaces = ('blog',)
+  >>> event.notify(ObjectModifiedEvent(root['space']))
+
+  >>> blog = root['space']['blog']
+
+  >>> from zojax.mail.interfaces import IPrincipalByEMail
+  >>> from zope.app.security.interfaces import IAuthentication
+
+  >>> auth = sm.getUtility(IAuthentication)
+
+  >>> class PrincipalByEmail(object):
+  ...     interface.implements(IPrincipalByEMail)
+  ...     
+  ...     def getPrincipal(self, email):
+  ...         if email == 'nkim@zojax.net':
+  ...             return auth.getPrincipal('zope.user')
+  ...         if email == 'manager@zojax.net':
+  ...             return auth.getPrincipal('zope.mgr')
+
+  >>> component.provideUtility(PrincipalByEmail(), name='test')
+
+  >>> msg = MIMEText('Blog post text', 'plain', 'ascii')
+  >>> msg['Subject'] = 'Test blog post'
+  >>> msg['From'] = 'manager@zojax.net'
+  >>> msg['To'] = 'blogger@zojax.net'
+
+  >>> configlet = sm.getUtility(IMailIn)
+  >>> configlet.process(msg)
+
+  >>> personalblog = root['people']['manager']['blog']
+
+  >>> post = personalblog['test-blog-post']
+
+  >>> post.title
+  u'Test blog post'
+
+  >>> post.text.text
+  u'Blog post text'
+
+  >>> msg = MIMEText('Blog post comment', 'plain', 'ascii')
+  >>> msg['Subject'] = 'Comment reply'
+  >>> msg['From'] = 'manager@zojax.net'
+  >>> msg['To'] = 'blogger@zojax.net'
+  >>> msg['In-Reply-To'] = mailin.generateMessageId(post)
+
+  >>> configlet.process(msg)
+
+  >>> from zojax.content.discussion.interfaces import IContentDiscussion
+
+  >>> comments = IContentDiscussion(post)
+  >>> comment = comments.values()[0]
+
+  >>> comment.comment
+  u'Blog post comment'
+
+
+Cleanup
+
+  >>> product.uninstall()
+  >>> setSite(None)

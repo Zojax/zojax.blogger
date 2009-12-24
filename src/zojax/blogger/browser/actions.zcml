@@ -1,0 +1,40 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   i18n_domain="zojax.blogger">
+
+  <!-- write post action -->
+  <adapter
+     name="create.content"
+     for="..interfaces.IBlogPost *"
+     provides="zojax.content.actions.interfaces.IAction"
+     factory=".actions.WritePostAction" />
+
+  <browser:icon
+     name="zmi_icon"
+     file="icons/blog.png"
+     for=".interfaces.IWritePostAction" />
+
+  <!-- manage blog -->
+  <adapter
+     name="blogger.manageblog"
+     provides="zojax.content.actions.interfaces.IAction"
+     factory=".actions.ManageBlogAction" />
+
+  <browser:icon
+     name="zmi_icon"
+     file="icons/blog.png"
+     for=".interfaces.IManageBlogAction" />
+
+  <!-- blog rss feed -->
+  <adapter
+     name="blogger.rss"
+     factory=".actions.BlogRSSFeedAction" />
+
+  <browser:icon
+     name="zmi_icon"
+     file="icons/rss.png"
+     for=".interfaces.IBlogRSSFeedAction" />
+
+</configure>

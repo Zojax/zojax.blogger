@@ -1,0 +1,207 @@
+/* zrt-cssregistry: */
+
+@media all { 
+
+  .blogger-content {
+    overflow: hidden;
+  }
+
+  .blogger-listing {
+    padding-top: 1em;
+  }
+
+  .blogger-listing {
+  }
+
+  .blogger-listing .blogger-post { 
+    padding: 1em;
+  }
+
+  .blogger-post {
+    position: relative;
+    font-size: 100%;
+  }
+
+  .blogger-post h3 {
+    display: inline;
+    color: fontColor;
+    font-size: 140% !important;
+    font-family: headingFontFamily;
+    line-height: 1.2em;
+    padding-top: 0;
+    border-bottom: 0;
+  }
+
+  .blogger-post h3 a {
+    color: fontColor;
+  }
+
+  .blogger-post h3 a:hover {
+    color: discreetColor;
+    text-decoration: none;
+  }
+
+  .blogger-post a.blogger-post-heading-title {
+    border-bottom: borderWidth borderStyle globalBorderColor;
+  }
+
+  .blogger-post-location {
+    font-size: 0.9em!important;
+    font-weight: normal;
+    font-style: italic;
+  }
+
+  .blogger-post-location a {
+    font-style: normal;
+    border-bottom: borderWidth borderStyle globalBorderColor;
+  }
+
+  .blogger-post-byline {
+    margin: 0.25em 0 1em 0;
+  }
+
+  .blogger-post-byline a {
+    text-decoration: none;
+    color: globalExtraColor;
+  }
+  
+  .blogger-post-byline a:hover {
+    color: linkColor;
+    text-decoration: none;
+  }
+
+  .blogger-post-date {
+    padding-left: 0.75em;
+  }
+
+  .blogger-post-content {
+    margin-bottom: 1em;
+    line-height: 1.3em;
+  }
+
+  .blogger-post-read-more {
+    padding-bottom: 1em;
+    text-align: right;
+  }
+
+  .blogger-avatar {
+    float: left;
+    display: block;
+    margin: 0 1em 1em 0;
+    padding: 2px;
+    background-color: transparent;
+    border: 1px solid globalBorderColor;
+  }
+
+  .blogger-avatar img {
+    border: 1px solid globalBorderColor;
+  }
+
+  .blogger-footer {
+    margin: 0;
+    padding: 0.25em 0;
+    clear: both;
+    color: linkColor;
+    font-size: 90%;
+    border-top: 1px solid globalBorderColor;
+  }
+
+  .blogger-footer li {
+    display: inline-block;
+    margin: 0 1em 0 0;
+    padding: 0.2em 0 0 19px;
+    background-repeat: no-repeat;
+    background-position: left center;
+    vertical-align: middle;
+  }
+
+  .blogger-footer li a {
+    text-decoration: none;
+    border-bottom: 0;
+  }
+
+  .blogger-footer li a:visited {
+    color: linkColor;
+  }
+
+  .blogger-footer li a:hover {
+    text-decoration: underline;
+  }
+
+  .blogger-footer-categories {
+    background-image: url(blogger-images/category.png);
+  }
+
+  .blogger-footer-comments {
+    background-image: url(blogger-images/comments.png);
+  }
+
+  .blogger-footer-addcomment {
+    background-image: url(blogger-images/comment-new.gif);
+  }
+
+  .blogger-footer-tags {
+    background-image: url(blogger-images/tag.png);
+  }
+
+  .blogger-comments-label {
+    float: right;
+    margin: 0 0 1em 1em;
+    font-size: 100%;
+    font-weight: bold;
+    text-align: right;
+    background: url(blogger-images/comments.png) no-repeat left center;
+  }
+
+  .blogger-comments-label a {
+    display: block;
+    padding: 2px 0 5px 21px;
+    text-decoration: none;
+  }
+
+
+  /*
+  ** Blogger: listing of blogs
+  */
+  
+  .blogger-blogs-listing {
+  
+  }
+
+  .blogger-blogs-listing-table {
+    width: 100%;
+    margin: 0;
+    font-size: 0.9em;
+    border: 1px solid globalBorderColor;
+    border-collapse: separate;
+  }
+
+  .blogger-blogs-listing-table th,
+  .blogger-blogs-listing-table td {
+    padding: 5px 8px;
+    text-align: center;
+    vertical-align: middle;
+    color: #666;
+  }
+
+  .blogger-blogs-listing-table th {
+    font-weight: bold;
+    white-space: nowrap;
+    background-color: #f5f5f5;
+  }
+
+  th.blogger-blogs-listing-table-title {
+    width: 85%;
+    text-align: left;
+  }
+
+  td.blogger-blogs-listing-table-title {
+    text-align: left;
+  }
+
+  /* Portlets */
+  .portlet-blogger-contentposts .blogger-listing { 
+    font-size: 110%;
+  }
+
+}

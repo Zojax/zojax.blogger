@@ -1,0 +1,13 @@
+<div class="z-portlet portlet-blogger-category" i18n:domain="zojax.blogger">
+  <h2 class="z-portlet-header" i18n:translate="">
+    Blog categories
+  </h2>
+  <div class="z-portlet-body"
+       tal:define="url context/context/@@absolute_url">
+    <div class="z-portlet-item" tal:repeat="category context/categories"
+	 tal:attributes="class python:repeat['category'].odd() and 'z-portlet-item odd' or 'z-portlet-item even'">
+      <a tal:content="category/title"
+	 tal:attributes="href string:$url/${category/name}/"></a>
+    </div>
+  </div>
+</div>

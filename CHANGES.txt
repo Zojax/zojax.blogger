@@ -1,0 +1,126 @@
+=======
+CHANGES
+=======
+
+0.6.6 (2009-11-19)
+------------------
+
+- Update tests to work with latest zojax.formatter
+
+
+0.6.5 (2009-10-27)
+------------------
+
+- Email comment notification author fix
+
+- Fixed archive portlet
+
+
+0.6.4 (2009-08-31)
+------------------
+
+- Update tests
+
+
+0.6.3 (2009-08-27)
+------------------
+
+- Use 'Add ...' actions instead of 'Create ...'
+
+- Mark category,month,year,tags as non removeable and nonrenamable
+
+
+0.6.2 (2009-08-22)
+------------------
+
+- Fixed post view with announce enabled
+
+- Fixed RecentPostsPortlet view
+
+- Optimize caching for RecentPostsPortlet and ContentRecentPostsPortlet portlets
+
+
+0.6.1 (2009-08-14)
+------------------
+
+- Fixed portlets caching
+
+
+0.6.0 (2009-08-12)
+------------------
+
+- Added caching
+
+- Added basic mail-in support
+
+- Use title based name chooser
+
+- User can change blog post short name
+
+- Unified blog post view code
+
+
+0.5.2 (2009-06-23)
+------------------
+
+- Fix blog post constraints
+
+- Fixed system error with post draft
+
+- Use newer personal profile api
+
+- Replace 'zojax:globalpermission' with 'zojax:permission'
+
+- Copyright changed to 'Zope Foundation and Contributors'
+
+
+0.5.1 (2009-05-14)
+------------------
+
+- Remove link from post title in post view form
+
+- Use 'announce view' in portlet only if 'Use post abstract field' enabled
+
+- Use 'announce view' for blog view in 'Use post abstract field' enabled
+
+
+0.5.0 (2009-05-04)
+------------------
+
+- Added post abstract field
+
+- Recent portlet fix
+
+
+0.4.0 (2009-04-08)
+------------------
+
+- Added activity system support
+
+- Added email notifications support
+
+- Fixed create blog post action
+
+
+0.3.0 (2009-04-02)
+------------------
+
+- Do not use catalog for archive portlet
+
+- Do not use effective index for recent posts portlet
+
+- Fixed post draft view if destination blog is not selected
+
+- Fixed post container constraints
+
+
+0.2.0 (2009-03-27)
+------------------
+
+- Added ISearchableText adapter for blog post
+
+
+0.1.0 (2009-03-17)
+------------------
+
+- Initial release.

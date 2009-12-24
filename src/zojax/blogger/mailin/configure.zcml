@@ -1,0 +1,29 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   i18n_domain="zojax.blogger">
+
+  <!-- Blogger Mail-in -->
+  <class class=".destination.BloggerMailInDestination">
+    <require
+       permission="zope.Public"
+       interface="zojax.mailin.interfaces.IMailInAwareDestination"
+       set_schema="zojax.mailin.interfaces.IMailInAwareDestination" />
+  </class>
+
+  <adapter factory=".destination.getMailInDestination" />
+
+  <subscriber handler=".destination.productUninstalled" />
+
+  <!-- blogger recipient -->
+  <adapter factory=".recipient.BloggerRecipient" />
+
+  <!-- configre mail-in -->
+  <zojax:pagelet
+     name="mailin"
+     type="wizard.step"
+     for="..interfaces.IBloggerProduct
+	  zojax.controlpanel.browser.interfaces.IConfigletEditWizard"
+    class=".config.MailInConfigure" />
+
+</configure>

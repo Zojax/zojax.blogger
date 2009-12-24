@@ -1,0 +1,28 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   i18n_domain="zojax.blogger">
+
+  <adapter 
+     name="blog"
+     factory=".notifications.BloggerNotification" />
+
+  <adapter
+     name="blog"
+     for="zojax.content.space.interfaces.IContentSpace"
+     factory=".notifications.BloggerNotification" />
+
+  <class class=".notifications.BloggerNotification">
+    <require
+       permission="zope.View"
+       interface=".interfaces.IBlogNotification" />
+  </class>
+
+  <subscriber handler=".notifications.blogPostPublished" />
+
+  <subscriber handler=".notifications.commentAdded" />
+
+  <utility
+     name="blog"
+     factory=".notifications.BloggerNotificationDescription" />
+
+</configure>

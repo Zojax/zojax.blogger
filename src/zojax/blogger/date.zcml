@@ -1,0 +1,28 @@
+<configure xmlns="http://namespaces.zope.org/zope">
+
+  <class class=".date.Year">
+    <implements
+       interface="zojax.content.type.interfaces.IRenameNotAllowed" />
+    <implements
+       interface="zojax.content.type.interfaces.IUnremoveableContent" />
+
+
+    <allow
+       attributes="index entries"
+       interface="zojax.content.type.interfaces.IItem
+		  zope.app.container.interfaces.IReadContainer" />
+  </class>
+
+  <class class=".date.Month">
+    <implements
+       interface="zojax.content.type.interfaces.IRenameNotAllowed" />
+    <implements
+       interface="zojax.content.type.interfaces.IUnremoveableContent" />
+
+    <allow
+       attributes="index entries"
+       interface="zojax.content.type.interfaces.IItem
+		  zope.app.container.interfaces.IReadContainer" />
+  </class>
+
+</configure>

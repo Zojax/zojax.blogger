@@ -1,0 +1,50 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   i18n_domain="zojax.blogger">
+
+  <!-- Blog Post -->
+  <zojax:content
+     title="Blog post"
+     name="content.blogpost"
+     schema=".interfaces.IBlogPost"
+     class=".post.BlogPost"
+     description="Blog post."
+     type=".interfaces.IBlogPostType
+	   zojax.content.type.interfaces.IActivePortalType"
+     containers="content.space workspace.blog"
+     permission="zojax.AddBlogPost" />
+
+  <class class=".post.BlogPost">
+    <implements interface="zojax.activity.interfaces.IActivityAware" />
+    <implements interface="zojax.ownership.interfaces.IOwnerAware" />
+    <implements
+       interface="zojax.content.attachment.interfaces.IAttachmentsAware" />
+    <implements
+       interface="zojax.content.discussion.interfaces.IOpenDiscussible" />
+    <implements interface="zojax.content.type.interfaces.ITitleBasedName" />
+    <implements
+       interface="zojax.content.type.interfaces.ISearchableContent" />
+    <implements
+       interface="zojax.content.tagging.interfaces.IContentTaggable" />
+
+    <require
+       permission="zope.Public"
+       attributes="description"
+       interface=".interfaces.IBlogPost" />
+    <require
+       permission="zojax.ModifyContent"
+       set_schema=".interfaces.IBlogPost" />
+  </class>
+
+  <adapter factory=".sized.Sized" />
+
+  <adapter factory=".post.PostSearchableText" />
+
+  <zojax:draft
+     content="content.blogpost"
+     publish="zojax.AddBlogPost"
+     submit="zojax.SubmitBlogPost"
+     retract="zojax.RetractBlogPost" />
+
+</configure>

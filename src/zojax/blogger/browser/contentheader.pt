@@ -1,0 +1,2 @@
+<tal:block tal:content="structure pageelement:content.title" />
+<tal:block tal:content="structure pageelement:content.description" />

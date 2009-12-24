@@ -1,0 +1,80 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   i18n_domain="zojax.blogger">
+
+  <!-- archive -->
+  <zojax:portlet
+     title="Blog archive"
+     for="..interfaces.IBlog"
+     name="portlets.blogger.archive"
+     class=".archive.BlogArchivePortlet" />
+
+  <zojax:pagelet
+     type="portlet.view"
+     template="archive.pt"
+     for=".archive.BlogArchivePortlet" />
+
+  <!-- tags -->
+  <zojax:portlet
+     title="Blog tags"
+     for="..interfaces.IBlog"
+     name="portlets.blogger.tags"
+     class=".tags.BlogTagsPortlet" />
+
+  <zojax:pagelet
+     type="portlet.view"
+     template="tagcloud.pt"
+     for=".tags.BlogTagsPortlet" />
+
+  <!-- categories -->
+  <zojax:portlet
+     for="..interfaces.IBlog"
+     title="Blog categories"
+     name="portlets.blogger.categories"
+     class=".category.CategoriesPortlet" />
+
+  <zojax:pagelet
+     type="portlet.view"
+     template="category.pt"
+     for=".category.CategoriesPortlet" />
+
+  <!-- recent comments -->
+  <zojax:portlet
+     title="Blog recent comments"
+     for="zojax.content.space.interfaces.ISpace"
+     name="portlets.blogger.recentcomments"
+     class=".comments.BlogRecentCommentsPortlet"
+     schema=".interfaces.IRecentCommentsPortlet" />
+
+  <zojax:portlet
+     title="Blog recent comments"
+     for="..interfaces.IBlog"
+     name="portlets.blogger.recentcomments"
+     class=".comments.BlogRecentCommentsPortlet"
+     schema=".interfaces.IRecentCommentsPortlet" />
+
+  <!-- recent posts -->
+  <zojax:portlet
+     title="Blog recent posts"
+     description="List of recent blog posts."
+     name="portlets.blogger.recentposts"
+     class=".posts.RecentPostsPortlet"
+     schema=".interfaces.IRecentPostsPortlet" />
+  
+  <!-- recent posts for content column -->
+  <zojax:portlet
+     title="Blog recent posts"
+     description="List of recent blog posts."
+     name="portlets.blogger.recentposts"
+     manager="zojax.content.space.portlets.interfaces.IContentPortletsManager"
+     class=".posts.ContentRecentPostsPortlet"
+     schema=".interfaces.IRecentPostsPortlet" />
+
+  <zojax:pagelet
+     type="portlet.view"
+     for=".posts.ContentRecentPostsPortlet"
+     template="postscontent.pt" />
+
+</configure>

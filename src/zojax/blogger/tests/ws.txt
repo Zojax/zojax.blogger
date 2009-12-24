@@ -1,0 +1,72 @@
+=============
+Browser tests
+=============
+
+    >>> from zope.interface import verify
+    >>> from zope.app.component.hooks import setSite
+    >>> from zope.app.security.interfaces import IAuthentication
+    >>> from zope.publisher.browser import TestRequest
+    >>> from zope.security.management import newInteraction, endInteraction
+    >>> from zojax.product import blogger as bloggerProduct
+    >>> from zojax.blogger import workspace, interfaces
+
+    >>> root = getRootFolder()
+    >>> setSite(root)
+    >>> sm = root.getSiteManager()
+    >>> sm.__bases__ = (bloggerProduct,) + sm.__bases__
+    >>> request = TestRequest()
+    >>> request.setPrincipal(sm.getUtility(IAuthentication).getPrincipal('zope.mgr'))
+    >>> newInteraction(request)
+
+
+Blogger workspace factory
+=========================
+
+    >>> factory = workspace.BloggerWorkspaceFactory(root)
+    >>> print factory.isInstalled()
+    False
+
+    >>> print factory.isAvailable()
+    True
+
+    >>> factory.isInstalled()
+    False
+
+    >>> manager = factory.install()
+
+    >>> interfaces.IBloggerWorkspace.providedBy(manager)
+    True
+
+    >>> root['blog'] is manager
+    True
+
+    >>> factory.isInstalled()
+    True
+
+
+Verify contract implementation
+------------------------------
+
+    >>> verify.verifyClass(interfaces.IBloggerWorkspace, workspace.BloggerWorkspace)
+    True
+
+    >>> verify.verifyObject(interfaces.IBloggerWorkspace, root['blog'])
+    True
+
+    >>> verify.verifyObject(interfaces.IBlog, root['blog'])
+    True
+
+
+Uninstall blog
+---------------
+
+    >>> factory.uninstall()
+    >>> 'blog' in root
+    False
+
+    >>> bases = list(sm.__bases__)
+    >>> bases.remove(bloggerProduct)
+    >>> sm.__bases__ = tuple(bases)
+
+    >>> endInteraction()
+    >>> setSite(None)

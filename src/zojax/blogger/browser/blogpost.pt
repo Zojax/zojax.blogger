@@ -1,0 +1,11 @@
+<tal:block define="notdraft not:view/draft">
+  <div class="blogger-listing" tal:omit-tag="notdraft">
+    <div class="even" i18n:domain="zojax.blogger" tal:omit-tag="notdraft">
+      <tal:block content="structure pagelet:blogger.post+post" />
+    </div>
+  </div>
+
+  <tal:block tal:condition="notdraft">
+    <tal:block content="structure pageelement:content.discussion" />
+  </tal:block>
+</tal:block>
