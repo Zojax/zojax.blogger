@@ -9,7 +9,8 @@
      schema=".interfaces.ICategory"
      name="content.blog.category"
      class=".category.Category"
-     containers="content.blog.categorycontainer" />
+     containers="content.blog.categorycontainer"
+     permission="zojax.AddBlogPost" />
 
   <class class=".category.Category">
     <implements interface="zojax.ownership.interfaces.IInheritOwnership" />
