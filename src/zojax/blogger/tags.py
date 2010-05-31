@@ -61,7 +61,7 @@ class BlogTags(Persistent, Contained):
         return tag in self.engine
 
     def listTags(self, post):
-        return [tag for tag, weight in self.engine.getItemsTagCloud(
+        return [tag for weight, tag in self.engine.getItemsTagCloud(
                 (getUtility(IIntIds).getId(removeSecurityProxy(post)),))]
 
 
