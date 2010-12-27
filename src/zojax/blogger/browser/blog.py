@@ -42,7 +42,7 @@ class BlogView(object):
         self.announce = getUtility(IBloggerProduct).usePostAbstractField
 
     def getPostView(self, idx):
-        post = self.ids.getObject(idx[1])
+        post = IBlogPost(self.ids.getObject(idx[1]))
 
         if self.announce:
             return getMultiAdapter(
