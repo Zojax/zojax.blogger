@@ -19,7 +19,8 @@ from zope.component import getUtility, getMultiAdapter
 from zope.app.intid.interfaces import IIntIds
 
 from zojax.batching.batch import Batch
-from zojax.blogger.interfaces import IBlog, IBlogPostView, IBloggerProduct
+from zojax.blogger.interfaces import IBlog, IBlogPostView, IBloggerProduct,\
+    IBlogPost
 
 
 class BlogView(object):
