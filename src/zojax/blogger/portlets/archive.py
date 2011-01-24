@@ -49,9 +49,8 @@ class BlogArchivePortlet(object):
                          {'url': '%s/%s/'%(yearurl, mname),
                           'month': u'%s %s (%s)'%(
                                     monthNames[int(mname)-1],yearName,len(posts))}))
-                dates.sort()
-                dates = [info for m, info in dates]
-
+        dates.sort()
+        dates = [info for m, info in dates]
         dates.reverse()
         return dates
 
