@@ -17,7 +17,10 @@ $Id$
 """
 from zope import interface, schema
 from zojax.blogger.interfaces import _
+
 from zojax.content.discussion.interfaces import IRecentCommentsPortlet
+from zojax.widget.radio.field import RadioChoice
+from zojax.portlets.recent.vocabulary import spaceModesVocabulary
 
 
 class IBlogPortlet(interface.Interface):
@@ -51,4 +54,10 @@ class IRecentPostsPortlet(interface.Interface):
         title = _(u'Number of posts'),
         description = _(u'Number of posts to display'),
         default = 10,
+        required = True)
+
+    spaceMode = RadioChoice(
+        title = _(u'Space mode'),
+        default = 1,
+        vocabulary=spaceModesVocabulary,
         required = True)

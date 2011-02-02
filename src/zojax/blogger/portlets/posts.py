@@ -40,6 +40,8 @@ def BlogPostsKey(object, instance, *args, **kw):
 
 
 class RecentPostsPortlet(RecentContentPortlet):
+    
+    types = ('content.blogpost',)
 
     rssfeed = 'blogposts'
     cssclass = 'portlet-blogger-posts'
@@ -51,7 +53,7 @@ class RecentPostsPortlet(RecentContentPortlet):
 
     def extraParameters(self):
         return {'sort_on': 'effective',
-                'noPublishing': True, 'type': {'any_of': ('content.blogpost',)}}
+                'noPublishing': True,}
 
     def getPostView(self, post):
         if self.announce:
