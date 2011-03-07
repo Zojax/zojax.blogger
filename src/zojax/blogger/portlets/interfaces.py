@@ -20,7 +20,6 @@ from zojax.blogger.interfaces import _
 
 from zojax.content.discussion.interfaces import IRecentCommentsPortlet
 from zojax.widget.radio.field import RadioChoice
-from zojax.portlets.recent.vocabulary import spaceModesVocabulary
 
 
 class IBlogPortlet(interface.Interface):
@@ -59,5 +58,5 @@ class IRecentPostsPortlet(interface.Interface):
     spaceMode = RadioChoice(
         title = _(u'Space mode'),
         default = 1,
-        vocabulary=spaceModesVocabulary,
+        vocabulary='zojax.portlets.recent-spacemodes',
         required = True)
