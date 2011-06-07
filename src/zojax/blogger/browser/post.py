@@ -99,7 +99,7 @@ class BasePostView(object):
             self.avatar_url = '#'
 
         if space is not None:
-            self.profile_url = '%s/'%absoluteURL(space, request)
+            self.profile_url = '%s/profile/'%absoluteURL(space, request)
 
         # discussion
         discussion = IContentDiscussion(post, None)
