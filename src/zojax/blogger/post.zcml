@@ -47,4 +47,9 @@
      submit="zojax.SubmitBlogPost"
      retract="zojax.RetractBlogPost" />
 
+  <!-- added Blog post to Featured content types -->
+  <class class="zojax.blogger.post.BlogPost">
+    <implements interface="zojax.content.featured.interfaces.IContentFeaturable" />
+  </class>
+
 </configure>
