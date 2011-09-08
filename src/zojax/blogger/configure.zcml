@@ -188,4 +188,7 @@
   <!-- translations -->
   <i18n:registerTranslations directory="locales"/>
 
+  <!-- extra packages configs -->
+  <include package=".configs" />
+
 </configure>
