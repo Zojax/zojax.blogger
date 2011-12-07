@@ -27,6 +27,7 @@
   <div class="blogger-post-byline">
     <tal:block i18n:translate="">Posted by</tal:block>
     <a href="#1" title="See author's profile"
+       i18n:attributes="title"
        tal:attributes="href view/profile_url"
        tal:content="view/author" tal:omit-tag="not:view/profile_url">Lael Powers</a>
     <span class="blogger-post-date"
@@ -38,7 +39,7 @@
   </div>
 
   <div class="blogger-post-read-more">
-    <a tal:attributes="href url">Read more...</a>
+    <a tal:attributes="href url" i18n:translate="">Read more...</a>
   </div>
   
   <ul class="blogger-footer" tal:condition="view/footer">

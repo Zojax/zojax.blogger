@@ -1,15 +1,15 @@
-<h4>
-  <tal:block content="view/author"/> posted new comment on 
-  <a tal:attributes="href view/url" tal:content="view/post/title"></a>
+<h4 i18n:translate="">
+  <tal:block i18n:name="author" content="view/author"/> posted new comment on 
+  <a tal:attributes="href view/url" i18n:name="title" tal:content="view/post/title"></a>
 </h4>
 <div tal:content="structure view/comment"></div>
 <br />
 <hr />
-<div>
-  Blog: <a tal:attributes="href string:${view/url}../"
+<div i18n:translate="">
+  Blog: <a i18n:name="title" tal:attributes="href string:${view/url}../"
 	   tal:content="context/title"></a>
 </div>
-<div>
-  Site: <a tal:attributes="href string:${view/site/@@absolute_url}/"
+<div i18n:translate="">
+  Site: <a i18n:name="title" tal:attributes="href string:${view/site/@@absolute_url}/"
 	   tal:content="view/site/title"></a>
 </div>
