@@ -22,7 +22,7 @@ from zope.dublincore.interfaces import IDCPublishing
 from zojax.richtext.field import RichTextProperty
 from zojax.content.type.item import PersistentItem
 from zojax.content.type.searchable import ContentSearchableText
-from dateutil.tz import *
+
 from interfaces import IBlogPost
 
 
@@ -39,13 +39,9 @@ class BlogPost(PersistentItem):
 
     @rwproperty.setproperty
     def date(self, value):
-
         publishing = IDCPublishing(self)
-        value=value.replace(tzinfo=tzlocal())
         publishing.effective = value
         self.__dict__['date'] = publishing.effective
-        print 'Date: %s '%value
-#        import pdb;pdb.set_trace()
         self._p_changed = True
 
 
