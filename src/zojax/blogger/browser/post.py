@@ -45,6 +45,7 @@ class PostContent(ContentBasicFields):
     @Lazy
     def fields(self):
         fields = super(PostContent, self).fields
+        fields=fields.omit('published')
         if not getUtility(IBloggerProduct).usePostAbstractField:
             return fields.omit('abstract')
         return fields
@@ -170,5 +171,4 @@ class BlogPostView(object):
 
     def update(self):
         super(BlogPostView, self).update()
-
         self.draft = IDraftedContent.providedBy(self.context)

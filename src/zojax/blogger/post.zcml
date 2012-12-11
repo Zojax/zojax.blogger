@@ -52,4 +52,9 @@
     <implements interface="zojax.content.featured.interfaces.IContentFeaturable" />
   </class>
 
+  <utility
+              name="blogpostPublished"
+              component=".indexes.blogpostPublished"
+              provides="zojax.catalog.interfaces.ICatalogIndexFactory"
+              />
 </configure>

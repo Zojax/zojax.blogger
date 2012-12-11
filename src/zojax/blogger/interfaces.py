@@ -85,6 +85,14 @@ class IBlogPost(interface.Interface):
         default = [],
         required = False)
 
+    published = schema.Bool(
+        title=_(u'Published'),
+        default=None,
+        required=False
+    )
+
+
+
 
 class IBlogPostType(interface.Interface):
     """ Blog post content type """

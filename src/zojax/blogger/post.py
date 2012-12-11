@@ -17,6 +17,8 @@ $Id$
 """
 import rwproperty
 from zope import interface, component
+from datetime import datetime
+import pytz
 from zope.schema.fieldproperty import FieldProperty
 from zope.dublincore.interfaces import IDCPublishing
 from zojax.richtext.field import RichTextProperty
@@ -34,6 +36,15 @@ class BlogPost(PersistentItem):
     category = FieldProperty(IBlogPost['category'])
 
     @rwproperty.getproperty
+    def published(self):
+        return self.__dict__.get('published', None)
+
+    @rwproperty.setproperty
+    def published(self, value):
+        self.__dict__['published'] = value
+        self._p_changed = True
+
+    @rwproperty.getproperty
     def date(self):
         return self.__dict__.get('date', None)
 
@@ -42,6 +53,10 @@ class BlogPost(PersistentItem):
         publishing = IDCPublishing(self)
         publishing.effective = value
         self.__dict__['date'] = publishing.effective
+        if datetime.now(pytz.utc)>=self.date:
+            self.__dict__['published']=True
+        else:
+            self.__dict__['published']=False
         self._p_changed = True
 
 
