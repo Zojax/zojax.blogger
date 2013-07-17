@@ -73,7 +73,7 @@ class BasePostView(object):
         self.post = post
         self.postUrl = absoluteURL(post, request)
         self.text = getattr(self.context.text,'cooked','')
-
+        self.profileData = profile.getProfileData()
         # blog
         if IDraftedContent.providedBy(post):
             blog = post.__parent__
