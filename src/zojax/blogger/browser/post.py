@@ -69,11 +69,14 @@ class BasePostView(object):
         owner = IOwnership(post).owner
         profile = IPersonalProfile(owner, None)
         space = getattr(profile, 'space', None)
+        profileData = profile.getProfileData()
 
         self.post = post
         self.postUrl = absoluteURL(post, request)
         self.text = getattr(self.context.text,'cooked','')
-        self.profileData = profile.getProfileData()
+        self.biography = getattr(profileData, 'about', False)
+        self.jobtitle = getattr(profileData, 'jobtitle', False)
+
         # blog
         if IDraftedContent.providedBy(post):
             blog = post.__parent__
