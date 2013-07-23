@@ -17,6 +17,7 @@ $Id$
 """
 import urllib
 from zope import interface
+import re
 from zope.component import getUtility, getMultiAdapter, queryMultiAdapter
 from zope.proxy import removeAllProxies
 from zope.security import checkPermission
@@ -51,6 +52,12 @@ class PostContent(ContentBasicFields):
         return fields
 
 
+def truncate_words(content, length=100, suffix='...'):
+    if len(content) <= length:
+        return content
+    else:
+        return ' '.join(content[:length+1].split(' ')[0:-1]) + suffix
+
 class BasePostView(object):
 
     url = ''
@@ -76,6 +83,8 @@ class BasePostView(object):
         self.text = getattr(self.context.text,'cooked','')
         self.biography = profileData.get('about', False)
         self.jobtitle = profileData.get('jobtitle', False)
+        if self.biography:
+            self.biography = truncate_words(re.sub('<[^>]*>', '', self.biography.text), 240)
         # blog
         if IDraftedContent.providedBy(post):
             blog = post.__parent__
