@@ -52,12 +52,6 @@ class PostContent(ContentBasicFields):
         return fields
 
 
-def truncate_words(content, length=100, suffix='...'):
-    if len(content) <= length:
-        return content
-    else:
-        return ' '.join(content[:length+1].split(' ')[0:-1]) + suffix
-
 class BasePostView(object):
 
     url = ''
@@ -84,6 +78,11 @@ class BasePostView(object):
         self.biography = profileData.get('about', False)
         self.jobtitle = profileData.get('jobtitle', False)
         if self.biography:
+            def truncate_words(content, length=100, suffix='...'):
+                if len(content) <= length:
+                    return content
+                else:
+                    return ' '.join(content[:length+1].split(' ')[0:-1]) + suffix
             self.biography = truncate_words(re.sub('<[^>]*>', '', self.biography.text), 240)
         # blog
         if IDraftedContent.providedBy(post):
