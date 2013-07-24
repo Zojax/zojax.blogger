@@ -78,12 +78,10 @@ class BasePostView(object):
         self.biography = profileData.get('about', False)
         self.jobtitle = profileData.get('jobtitle', False)
         if self.biography:
-            def truncate_words(content, length=100, suffix='...'):
-                if len(content) <= length:
-                    return content
-                else:
-                    return ' '.join(content[:length+1].split(' ')[0:-1]) + suffix
-            self.biography = truncate_words(re.sub('<[^>]*>', '', self.biography.text), 240)
+            self.biography = re.sub('<[^>]*>', '', self.biography.text)
+            if len(self.biography) >= 240:
+                self.biography = self.biography[:240].rsplit(' ', 1)[0] + '...'
+
         # blog
         if IDraftedContent.providedBy(post):
             blog = post.__parent__
