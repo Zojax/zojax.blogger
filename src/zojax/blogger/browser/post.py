@@ -80,7 +80,7 @@ class BasePostView(object):
         if self.biography:
             self.biography = re.sub('<[^>]*>', '', self.biography.text)
             if len(self.biography) >= 240:
-                self.biography = self.biography[:240].rsplit(' ', 1)[0] + '...'
+                self.biography = self.biography[:240].rsplit(' ', 1)[0].strip() + '...'
 
         # blog
         if IDraftedContent.providedBy(post):
