@@ -92,8 +92,6 @@ class IBlogPost(interface.Interface):
     )
 
 
-
-
 class IBlogPostType(interface.Interface):
     """ Blog post content type """
 
@@ -171,3 +169,57 @@ class IBlogNotification(IContentNotification):
 
 class IBloggerPermissions(IPermissionCategory):
     """ blog permissions """
+
+
+class IBlogPostPage(interface.Interface):
+
+    text = RichText(
+        title = _(u'Text'),
+        description = _(u'Blog post body text.'),
+        required = True)
+
+    position = schema.TextLine(
+        title=_(u'Position'),
+        required=False)
+
+
+class IAdvancedBlogPost(interface.Interface):
+    """ Advanced Blog post """
+
+    title = schema.TextLine(
+        title = _(u'Title'),
+        description = _(u'Post title.'),
+        default = u'',
+        missing_value = u'',
+        required = True)
+
+    abstract = RichText(
+        title = _(u'Abstract'),
+        description = _(u'Blog post abstract text.'),
+        required = True)
+
+    date = schema.Datetime(
+        title = _('Publish Date / Time'),
+        description = _('Post date.'),
+        required = True)
+
+    category = CheckboxList(
+        title = _(u'Category'),
+        description = _('Select category for blog post.'),
+        vocabulary = 'zojax.blogger-categories',
+        default = [],
+        required = False)
+
+    published = schema.Bool(
+        title=_(u'Published'),
+        default=None,
+        required=False
+    )
+
+    pages = schema.List(
+        title=_(u"Pages"),
+        value_type=schema.Object(
+            title=_(u'page'),
+            schema=IBlogPostPage),
+        default=[],
+        required=False)

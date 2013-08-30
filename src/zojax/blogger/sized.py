@@ -19,7 +19,7 @@ from zope import interface, component
 from zope.size import byteDisplay
 from zope.size.interfaces import ISized
 
-from interfaces import IBlog, IBlogPost
+from interfaces import IBlog, IBlogPost, IAdvancedBlogPost
 
 
 class Sized(object):
@@ -38,6 +38,25 @@ class Sized(object):
 
     def sizeForDisplay(self):
         return byteDisplay(self.size)
+
+class AdvancedBlogSized(object):
+    component.adapts(IAdvancedBlogPost)
+    interface.implements(ISized)
+
+    def __init__(self, context):
+        self.context = context
+
+        self.size = len(context.title) + \
+                    len(context.description) + \
+                    len(context.text)
+
+    def sizeForSorting(self):
+        return "byte", self.size
+
+    def sizeForDisplay(self):
+        return byteDisplay(self.size)
+
+
 
 
 class BlogSized(object):

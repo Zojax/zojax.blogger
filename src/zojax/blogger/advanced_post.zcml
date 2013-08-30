@@ -1,0 +1,96 @@
+<configure
+   xmlns="http://namespaces.zope.org/zope"
+   xmlns:zojax="http://namespaces.zope.org/zojax"
+   xmlns:browser="http://namespaces.zope.org/browser"
+   i18n_domain="zojax.blogger">
+
+  <!-- Advanced Blog Post -->
+  <zojax:content
+     title="Advanced Blog post"
+     name="content.advanced_blogpost"
+     schema=".interfaces.IAdvancedBlogPost"
+     class=".post.AdvancedBlogPost"
+     description="Blog post."
+     type=".interfaces.IBlogPostType
+	   zojax.content.type.interfaces.IActivePortalType"
+     containers="content.space workspace.blog"
+     permission="zojax.AddBlogPost" />
+
+  <class class=".post.AdvancedBlogPost">
+    <implements interface="zojax.activity.interfaces.IActivityAware" />
+    <implements interface="zojax.ownership.interfaces.IOwnerAware" />
+    <implements
+       interface="zojax.content.attachment.interfaces.IAttachmentsAware" />
+    <implements
+       interface="zojax.content.discussion.interfaces.IOpenDiscussible" />
+    <implements interface="zojax.content.type.interfaces.ITitleBasedName" />
+    <implements
+       interface="zojax.content.type.interfaces.ISearchableContent" />
+    <implements
+       interface="zojax.content.tagging.interfaces.IContentTaggable" />
+
+    <require
+       permission="zope.Public"
+       attributes="description"
+       interface=".interfaces.IAdvancedBlogPost" />
+    <require
+       permission="zojax.ModifyContent"
+       set_schema=".interfaces.IAdvancedBlogPost" />
+  </class>
+
+  <adapter factory=".sized.AdvancedBlogSized" />
+
+  <adapter factory=".post.AdvancedBlogPostSearchableText" />
+
+  <zojax:draft
+     content="content.advanced_blogpost"
+     publish="zojax.AddBlogPost"
+     submit="zojax.SubmitBlogPost"
+     retract="zojax.RetractBlogPost" />
+
+  <!-- added Blog post to Featured content types -->
+  <!--<class class=".forms.ImageRotatorImage">-->
+    <!--<allow interface=".interfaces.IImageRotatorImage" />-->
+  <!--</class>-->
+
+
+
+  <!-- pages access -->
+  <adapter
+     name="pages"
+     for=".interfaces.IAdvancedBlogPost zope.publisher.interfaces.http.IHTTPRequest"
+     provides="zope.publisher.interfaces.IPublishTraverse"
+     factory=".post.Pages" />
+
+  <!--<adapter-->
+     <!--name="images"-->
+     <!--for=".interfaces.IImageRotatorSimplePortlet zope.publisher.interfaces.http.IHTTPRequest"-->
+     <!--provides="zope.publisher.interfaces.IPublishTraverse"-->
+     <!--factory=".images.Images" />-->
+
+  <!--<adapter-->
+     <!--name="buttons"-->
+     <!--for=".interfaces.IImageRotatorPortlet zope.publisher.interfaces.http.IHTTPRequest"-->
+     <!--provides="zope.publisher.interfaces.IPublishTraverse"-->
+     <!--factory=".images.Buttons" />-->
+
+
+  <class class=".post.BlogPostPage">
+    <allow interface=".interfaces.IBlogPostPage" />
+  </class>
+
+  <class class="zojax.blogger.post.AdvancedBlogPost">
+    <implements interface="zojax.content.featured.interfaces.IContentFeaturable" />
+  </class>
+
+  <browser:defaultView
+     name="++attribute++page"
+     for=".interfaces.IBlogPostPage" />
+
+
+  <utility
+              name="advancedBlogpostPublished"
+              component=".indexes.blogpostPublished"
+              provides="zojax.catalog.interfaces.ICatalogIndexFactory"
+              />
+</configure>

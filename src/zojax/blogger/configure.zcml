@@ -47,6 +47,9 @@
     <!-- blog post -->
     <include file="post.zcml" />
 
+    <!-- advanced blog post -->
+    <include file="advanced_post.zcml" />
+
     <!-- blog categories -->
     <include file="category.zcml" />
 
