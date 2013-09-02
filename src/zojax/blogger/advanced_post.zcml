@@ -10,8 +10,8 @@
      name="content.advanced_blogpost"
      schema=".interfaces.IAdvancedBlogPost"
      class=".post.AdvancedBlogPost"
-     description="Blog post."
-     type=".interfaces.IBlogPostType
+     description="Blog post with pages"
+     type=".interfaces.IAdvancedBlogPostType
 	   zojax.content.type.interfaces.IActivePortalType"
      containers="content.space workspace.blog"
      permission="zojax.AddBlogPost" />
@@ -75,7 +75,7 @@
      <!--factory=".images.Buttons" />-->
 
 
-  <class class=".post.BlogPostPage">
+  <class class=".forms.BlogPostPage">
     <allow interface=".interfaces.IBlogPostPage" />
   </class>
 

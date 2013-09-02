@@ -223,3 +223,15 @@ class IAdvancedBlogPost(interface.Interface):
             schema=IBlogPostPage),
         default=[],
         required=False)
+
+
+class IAdvancedBlogPostType(interface.Interface):
+    """ Blog post content type """
+    pages = schema.List(
+        title=_(u"Pages"),
+        value_type=schema.Object(
+            title=_(u'page'),
+            schema=IBlogPostPage),
+        default=[],
+        required=False)
+

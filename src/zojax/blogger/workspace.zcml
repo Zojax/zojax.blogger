@@ -13,7 +13,8 @@
      title="Blog Workspace"
      class=".workspace.BloggerWorkspace"
      schema=".interfaces.IBloggerWorkspace"
-     contains=".interfaces.IBlogPostType"
+     contains=".interfaces.IBlogPostType
+               .interfaces.IAdvancedBlogPostType"
      type="zojax.content.type.interfaces.IInactiveType" />
 
   <!-- blogger workspace -->

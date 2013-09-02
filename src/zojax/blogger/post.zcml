@@ -13,6 +13,7 @@
      type=".interfaces.IBlogPostType
 	   zojax.content.type.interfaces.IActivePortalType"
      containers="content.space workspace.blog"
+     contains=".interfaces.IAdvancedBlogPostType"
      permission="zojax.AddBlogPost" />
 
   <class class=".post.BlogPost">

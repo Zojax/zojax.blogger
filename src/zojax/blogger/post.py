@@ -83,7 +83,7 @@ class AdvancedBlogPost(PersistentItem):
     def date(self):
         return self.__dict__.get('date', None)
 
-    @rwproperty.setpropertyw
+    @rwproperty.setproperty
     def date(self, value):
         publishing = IDCPublishing(self)
         publishing.effective = value
@@ -105,6 +105,7 @@ class PostSearchableText(ContentSearchableText):
         except AttributeError:
             return text
 
+
 class AdvancedBlogPostSearchableText(ContentSearchableText):
     component.adapts(IAdvancedBlogPost)
 
@@ -114,16 +115,6 @@ class AdvancedBlogPostSearchableText(ContentSearchableText):
             return text + u' ' + self.content.text.text
         except AttributeError:
             return text
-
-
-class BlogPostPage(object):
-
-    title = None
-
-    text = RichTextProperty(IBlogPostPage['text'])
-
-    position = FieldProperty(IBlogPostPage['position'])
-
 
 
 class Pages(object):
@@ -138,6 +129,7 @@ class Pages(object):
 
     def publishTraverse(self, request, name):
         context = self.context
+        # import ipdb; ipdb.set_trace()
         try:
             return LocationProxy(context.pages[int(name)-1], self.context, name)
         except ValueError, e:
