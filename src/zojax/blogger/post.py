@@ -15,8 +15,9 @@
 
 $Id$
 """
-import rwproperty
-from zojax.filefield.field import FileFieldProperty
+
+from rwproperty import setproperty, getproperty
+
 from zope import interface, component
 from datetime import datetime
 import pytz
@@ -28,7 +29,7 @@ from zojax.richtext.field import RichTextProperty
 from zojax.content.type.item import PersistentItem
 from zojax.content.type.searchable import ContentSearchableText
 
-from interfaces import IBlogPost, IAdvancedBlogPost, IBlogPostPage
+from interfaces import IBlogPost, IAdvancedBlogPost #, IBlogPostPage
 
 
 class BlogPost(PersistentItem):
@@ -38,20 +39,20 @@ class BlogPost(PersistentItem):
     abstract = RichTextProperty(IBlogPost['abstract'])
     category = FieldProperty(IBlogPost['category'])
 
-    @rwproperty.getproperty
+    @getproperty
     def published(self):
         return self.__dict__.get('published', None)
 
-    @rwproperty.setproperty
+    @setproperty
     def published(self, value):
         self.__dict__['published'] = value
         self._p_changed = True
 
-    @rwproperty.getproperty
+    @getproperty
     def date(self):
         return self.__dict__.get('date', None)
 
-    @rwproperty.setproperty
+    @setproperty
     def date(self, value):
         publishing = IDCPublishing(self)
         publishing.effective = value
@@ -63,36 +64,33 @@ class BlogPost(PersistentItem):
         self._p_changed = True
 
 
-class AdvancedBlogPost(PersistentItem):
+class AdvancedBlogPost(BlogPost):
     interface.implements(IAdvancedBlogPost)
 
-    text = RichTextProperty(IBlogPost['text'])
-    abstract = RichTextProperty(IBlogPost['abstract'])
-    category = FieldProperty(IBlogPost['category'])
+    @getproperty
+    def text(self):
+        return self.__dict__.get('text', [])
 
-    @rwproperty.getproperty
-    def published(self):
-        return self.__dict__.get('published', None)
-
-    @rwproperty.setproperty
-    def published(self, value):
-        self.__dict__['published'] = value
-        self._p_changed = True
-
-    @rwproperty.getproperty
-    def date(self):
-        return self.__dict__.get('date', None)
-
-    @rwproperty.setproperty
-    def date(self, value):
-        publishing = IDCPublishing(self)
-        publishing.effective = value
-        self.__dict__['date'] = publishing.effective
-        if datetime.now(pytz.utc)>=self.date:
-            self.__dict__['published']=True
+    @setproperty
+    def text(self, value):
+        old = self.text
+        if value is not None:
+            if len(value) > len(old):
+                old.extend(value[len(old):])
+            else:
+                old = old[:len(value)]
         else:
-            self.__dict__['published']=False
-        self._p_changed = True
+            self.__data__['text'] = []
+            return
+        for k, v in enumerate(value):
+            ov = old[k]
+            if v.text:
+                ov.text = v.text
+            ov.position = v.position
+
+        # NOTE: sort by position
+        old = sorted(old, key=lambda x: x.position)
+        self.__dict__['text'] = old
 
 
 class PostSearchableText(ContentSearchableText):

@@ -11,7 +11,7 @@
      schema=".interfaces.IAdvancedBlogPost"
      class=".post.AdvancedBlogPost"
      description="Blog post with pages"
-     type=".interfaces.IAdvancedBlogPostType
+     type=".interfaces.IBlogPostType
 	   zojax.content.type.interfaces.IActivePortalType"
      containers="content.space workspace.blog"
      permission="zojax.AddBlogPost" />
@@ -48,33 +48,6 @@
      submit="zojax.SubmitBlogPost"
      retract="zojax.RetractBlogPost" />
 
-  <!-- added Blog post to Featured content types -->
-  <!--<class class=".forms.ImageRotatorImage">-->
-    <!--<allow interface=".interfaces.IImageRotatorImage" />-->
-  <!--</class>-->
-
-
-
-  <!-- pages access -->
-  <adapter
-     name="pages"
-     for=".interfaces.IAdvancedBlogPost zope.publisher.interfaces.http.IHTTPRequest"
-     provides="zope.publisher.interfaces.IPublishTraverse"
-     factory=".post.Pages" />
-
-  <!--<adapter-->
-     <!--name="images"-->
-     <!--for=".interfaces.IImageRotatorSimplePortlet zope.publisher.interfaces.http.IHTTPRequest"-->
-     <!--provides="zope.publisher.interfaces.IPublishTraverse"-->
-     <!--factory=".images.Images" />-->
-
-  <!--<adapter-->
-     <!--name="buttons"-->
-     <!--for=".interfaces.IImageRotatorPortlet zope.publisher.interfaces.http.IHTTPRequest"-->
-     <!--provides="zope.publisher.interfaces.IPublishTraverse"-->
-     <!--factory=".images.Buttons" />-->
-
-
   <class class=".forms.BlogPostPage">
     <allow interface=".interfaces.IBlogPostPage" />
   </class>
@@ -82,10 +55,6 @@
   <class class="zojax.blogger.post.AdvancedBlogPost">
     <implements interface="zojax.content.featured.interfaces.IContentFeaturable" />
   </class>
-
-  <browser:defaultView
-     name="++attribute++page"
-     for=".interfaces.IBlogPostPage" />
 
 
   <utility

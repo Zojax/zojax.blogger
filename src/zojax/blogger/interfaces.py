@@ -173,61 +173,24 @@ class IBloggerPermissions(IPermissionCategory):
 
 class IBlogPostPage(interface.Interface):
 
+    title = interface.Attribute("Object's Title")
+
     text = RichText(
-        title = _(u'Text'),
-        description = _(u'Blog post body text.'),
-        required = True)
+        title=_(u'Text'),
+        description=_(u'Blog post body text.'),
+        required=False)
 
     position = schema.TextLine(
         title=_(u'Position'),
         required=False)
 
 
-class IAdvancedBlogPost(interface.Interface):
+class IAdvancedBlogPost(IBlogPost):
     """ Advanced Blog post """
 
-    title = schema.TextLine(
-        title = _(u'Title'),
-        description = _(u'Post title.'),
-        default = u'',
-        missing_value = u'',
-        required = True)
+    #text = interface.Attribute("Object's Text")
 
-    abstract = RichText(
-        title = _(u'Abstract'),
-        description = _(u'Blog post abstract text.'),
-        required = True)
-
-    date = schema.Datetime(
-        title = _('Publish Date / Time'),
-        description = _('Post date.'),
-        required = True)
-
-    category = CheckboxList(
-        title = _(u'Category'),
-        description = _('Select category for blog post.'),
-        vocabulary = 'zojax.blogger-categories',
-        default = [],
-        required = False)
-
-    published = schema.Bool(
-        title=_(u'Published'),
-        default=None,
-        required=False
-    )
-
-    pages = schema.List(
-        title=_(u"Pages"),
-        value_type=schema.Object(
-            title=_(u'page'),
-            schema=IBlogPostPage),
-        default=[],
-        required=False)
-
-
-class IAdvancedBlogPostType(interface.Interface):
-    """ Blog post content type """
-    pages = schema.List(
+    text = schema.List(
         title=_(u"Pages"),
         value_type=schema.Object(
             title=_(u'page'),

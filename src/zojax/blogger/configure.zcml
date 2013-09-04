@@ -31,11 +31,6 @@
      interface=".interfaces.IBlogPostType"
      type="zojax.content.type.interfaces.IContentTypeType" />
 
-  <interface
-     name="Advanced Blog post"
-     interface=".interfaces.IAdvancedBlogPostType"
-     type="zojax.content.type.interfaces.IContentTypeType" />
-
   <zojax:pageletType
      name="blogger.post"
      interface=".interfaces.IBlogPostView" />
@@ -134,7 +129,7 @@
 
     <!-- blog pemrission modified handler -->
     <subscriber
-       factory=".permission.bloggerPermissionModified" 
+       factory=".permission.bloggerPermissionModified"
        provides="zojax.content.permissions.interfaces.IPermissionContentTypes"/>
 
     <!-- blog post cache tag -->

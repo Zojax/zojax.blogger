@@ -25,7 +25,7 @@ from zope.app.intid.interfaces import IIntIds
 from zojax.authentication.utils import getPrincipal
 from zojax.ownership.interfaces import IOwnership
 from zojax.principal.profile.interfaces import IPersonalProfile
-from zojax.blogger.interfaces import IBloggerProduct
+from zojax.blogger.interfaces import IBloggerProduct, IAdvancedBlogPost
 from zojax.blogger.mailin.interfaces import IBloggerDestination
 
 
@@ -72,7 +72,11 @@ class BlogPostNotificationMail(object):
         self.addHeader(u'List-Archive', u'%s/'%blogurl)
 
     def text(self):
-        text = self.post.text.cooked
+        if IAdvancedBlogPost.providedBy(self.post):
+            # TODO: text for AdvancedBlogPost
+            text = ''
+        else:
+            text = self.post.text.cooked
 
         if u'src="@@content.attachment/' in text:
             s = u'src="%s/@@content.attachment/'%absoluteURL(

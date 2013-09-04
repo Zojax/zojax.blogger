@@ -39,24 +39,18 @@ class Sized(object):
     def sizeForDisplay(self):
         return byteDisplay(self.size)
 
-class AdvancedBlogSized(object):
+
+class AdvancedBlogSized(Sized):
     component.adapts(IAdvancedBlogPost)
     interface.implements(ISized)
 
     def __init__(self, context):
         self.context = context
 
+        # TODO: context.description
         self.size = len(context.title) + \
                     len(context.description) + \
                     len(context.text)
-
-    def sizeForSorting(self):
-        return "byte", self.size
-
-    def sizeForDisplay(self):
-        return byteDisplay(self.size)
-
-
 
 
 class BlogSized(object):

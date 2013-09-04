@@ -23,11 +23,11 @@ from zope.schema.fieldproperty import FieldProperty
 
 from z3c.form.object import registerFactoryAdapter
 
-from zojax.filefield.field import FileFieldProperty
 from zojax.richtext.field import RichTextProperty
 
 
 class BlogPostPage(object):
+    interface.implements(IBlogPostPage)
 
     title = None
 
