@@ -34,8 +34,17 @@
 	  tal:content="structure formatter:fancyDatetime,medium:context/date">Dec 16, 2008</span>
   </div>
 
-  <div class="blogger-post-content"
-       tal:content="structure view/text">
+  <div class="blogger-post-content">
+      <div id="pager_container" class="container">
+          <div class="page_navigation"></div>
+          <ul class="content">
+              <li tal:repeat="page view/pages" tal:content="structure page">
+                  <!--<div class="content" tal:content="structure page"></div>-->
+              </li>
+          </ul>
+          <div class="page_navigation"></div>
+      </div>
+      <a class="show-all" href="#">View As One Page</a>
   </div>
 
   <ul class="blogger-footer" tal:condition="view/footer">

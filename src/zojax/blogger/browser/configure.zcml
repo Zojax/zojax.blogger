@@ -100,6 +100,15 @@
      permission="zope.View" />
 
   <zojax:pagelet
+     name="index.html"
+     layout="viewspace"
+     for="..interfaces.IAdvancedBlogPost"
+     template="advanced_blogpost.pt"
+     class=".post.AdvancedBlogPostView"
+     provides="zojax.content.type.interfaces.IContentView"
+     permission="zope.View" />
+
+  <zojax:pagelet
      name="blog"
      type="blogger.post"
      for="..interfaces.IBlogPost"
@@ -113,6 +122,14 @@
      for="..interfaces.IBlogPost"
      template="post.pt"
      class=".post.PostView"
+     permission="zope.View" />
+
+  <zojax:pagelet
+     name="advancedpost"
+     type="blogger.post"
+     for="..interfaces.IAdvancedBlogPost"
+     template="advancedpost.pt"
+     class=".post.AdvancedPostView"
      permission="zope.View" />
 
   <zojax:pagelet

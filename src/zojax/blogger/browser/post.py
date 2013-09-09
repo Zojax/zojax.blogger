@@ -180,3 +180,19 @@ class BlogPostView(object):
     def update(self):
         super(BlogPostView, self).update()
         self.draft = IDraftedContent.providedBy(self.context)
+
+
+class AdvancedBlogPostView(BlogPostView):
+    """
+    Advanced post view
+    """
+
+
+class AdvancedPostView(PostView):
+    """
+    Advanced post view
+    """
+    def update(self):
+        super(AdvancedPostView, self).update()
+        self.pages = [getattr(p.text,'cooked','') for p in self.context.text]
+        self.draft = IDraftedContent.providedBy(self.context)
