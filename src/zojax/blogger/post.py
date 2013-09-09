@@ -92,6 +92,11 @@ class AdvancedBlogPost(BlogPost):
         old = sorted(old, key=lambda x: x.position)
         self.__dict__['text'] = old
 
+    @property
+    def full_post_text(self):
+        # pages = sorted(self.context.text, key=lambda x: x.position)
+        return ''.join([getattr(page.text, 'cooked', '') for page in self.text])
+
 
 class PostSearchableText(ContentSearchableText):
     component.adapts(IBlogPost)
@@ -110,7 +115,7 @@ class AdvancedBlogPostSearchableText(ContentSearchableText):
     def getSearchableText(self):
         text = super(AdvancedBlogPostSearchableText, self).getSearchableText()
         try:
-            return text + u' ' + self.content.text.text
+            return text + u' ' + self.content.full_post_text
         except AttributeError:
             return text
 

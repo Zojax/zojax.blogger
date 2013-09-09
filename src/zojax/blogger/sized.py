@@ -50,7 +50,7 @@ class AdvancedBlogSized(Sized):
         # TODO: context.description
         self.size = len(context.title) + \
                     len(context.description) + \
-                    len(context.text)
+                    len(context.full_post_text)
 
 
 class BlogSized(object):
