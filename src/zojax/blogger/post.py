@@ -29,7 +29,7 @@ from zojax.richtext.field import RichTextProperty
 from zojax.content.type.item import PersistentItem
 from zojax.content.type.searchable import ContentSearchableText
 
-from interfaces import IBlogPost, IAdvancedBlogPost #, IBlogPostPage
+from interfaces import IBlogPost, IAdvancedBlogPost
 
 
 class BlogPost(PersistentItem):
@@ -94,7 +94,6 @@ class AdvancedBlogPost(BlogPost):
 
     @property
     def full_post_text(self):
-        # pages = sorted(self.context.text, key=lambda x: x.position)
         return ''.join([getattr(page.text, 'cooked', '') for page in self.text])
 
 
