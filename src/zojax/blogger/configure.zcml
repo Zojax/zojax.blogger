@@ -185,9 +185,6 @@
      name="zojax.blogger-categories"
      factory=".vocabulary.CategoriesVocabulary" />
 
-  <!-- styles -->
-  <include package=".browser" file="styles.zcml" />
-
   <!-- translations -->
   <i18n:registerTranslations directory="locales"/>
 
@@ -195,7 +192,7 @@
      name="jquery.pajinate.js"
      library="zojax" type="javascript"
      require="jquery"
-     file="resources/pajinate/jquery.pajinate.js"/>
+     file="resources/pajinate/jquery.pajinate.min.js"/>
 
   <zojax:resourceinclude
      name="blog_paginator.js"
@@ -208,5 +205,8 @@
      library="zojax" type="javascript"
      require="jquery jquery-plugins"
      file="resources/dragdrop.js"/>
+
+  <!-- styles -->
+  <include package=".browser" file="styles.zcml" />
 
 </configure>

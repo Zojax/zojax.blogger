@@ -253,4 +253,26 @@
   width: 598px!important;
 }
 
+/* slider controls */
+
+.page_navigation .next_link,
+.page_navigation .previous_link{
+    background: none repeat scroll 0 0 #A0160E;
+    text-transform: capitalize;
+    padding: 2px 4px 1px;
+    font-size: 11px;
+    /*float: left;*/
+    color: #FFFFFF;
+    border-radius: 3px 3px 3px 3px;
+    border: 1px solid #666666;
+}
+
+.show-all,
+.page_navigation {
+    float: right;
+}
+
+.post-pages {
+    list-style: none;
+}
 }

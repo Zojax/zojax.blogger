@@ -35,16 +35,16 @@
   </div>
 
   <div class="blogger-post-content">
-      <div id="pager_container" class="container">
+      <div id="pager_container" class="pager_container">
           <div class="page_navigation"></div>
-          <ul class="content">
+          <ul class="post-pages">
               <li tal:repeat="page view/pages" tal:content="structure page">
                   <!--<div class="content" tal:content="structure page"></div>-->
               </li>
           </ul>
           <div class="page_navigation"></div>
       </div>
-      <a class="show-all" href="#">View As One Page</a>
+          <a class="show-all" href="#">View As One Page</a>
   </div>
 
   <ul class="blogger-footer" tal:condition="view/footer">

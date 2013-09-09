@@ -21,3 +21,8 @@ from interfaces import IBlogPost
 
 def blogpostPublished():
     return ValueIndex('published', IBlogPost)
+
+
+def advancedBlogpostText():
+    import ipdb; ipdb.set_trace()
+    return ValueIndex('published', IBlogPost)

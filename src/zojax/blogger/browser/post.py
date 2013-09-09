@@ -194,5 +194,6 @@ class AdvancedPostView(PostView):
     """
     def update(self):
         super(AdvancedPostView, self).update()
-        self.pages = [getattr(p.text,'cooked','') for p in self.context.text]
+        pages = sorted(self.context.text, key=lambda x: x.position)
+        self.pages = [getattr(p.text, 'cooked', '') for p in pages]
         self.draft = IDraftedContent.providedBy(self.context)
