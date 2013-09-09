@@ -191,7 +191,6 @@
   <!-- translations -->
   <i18n:registerTranslations directory="locales"/>
 
-
   <zojax:resourceinclude
      name="jquery.pajinate.js"
      library="zojax" type="javascript"
@@ -204,18 +203,10 @@
      require="jquery"
      file="resources/blog_paginator.js"/>
 
-  <!--<zojax:resourceinclude-->
-     <!--name="smartpaginator.css"-->
-     <!--library="zojax" type="css"-->
-     <!--require="jquery jquery-plugins"-->
-     <!--file="resources/smartpaginator/smartpaginator.css"/>-->
-
-
-  <!--<zojax:resourceinclude-->
-     <!--name="jquery.orbit-1.2.3"-->
-     <!--type="javascript"-->
-     <!--library="jquery.orbit-1.2.3"-->
-     <!--require="jquery"-->
-     <!--path="portlet-imagerotator/jquery.orbit-1.2.3.min.js" />-->
+  <zojax:resourceinclude
+     name="pages_dragdrop.js"
+     library="zojax" type="javascript"
+     require="jquery jquery-plugins"
+     file="resources/dragdrop.js"/>
 
 </configure>
