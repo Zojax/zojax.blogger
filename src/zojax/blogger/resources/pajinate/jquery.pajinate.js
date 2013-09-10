@@ -11,6 +11,42 @@
 /*******************************************************************************************/
 
     $.fn.pajinate = function(options){
+
+		gotopage = function (page_num){
+
+			var ipp = parseInt(meta.data(items_per_page));
+
+			var isLastPage = false;
+
+			// Find the start of the next slice
+			start_from = page_num * ipp;
+
+			// Find the end of the next slice
+			end_on = start_from + ipp;
+			// Hide the current page
+			var items = $items.hide().slice(start_from, end_on);
+
+			items.fadeIn(500);
+
+			// Reassign the active class
+			$page_container.find(options.nav_panel_id).children('.page_link[longdesc=' + page_num +']').addClass('active_page '+ jquery_ui_active_class)
+													 .siblings('.active_page')
+													 .removeClass('active_page ' + jquery_ui_active_class);
+
+			// Set the current page meta data
+			meta.data(current_page,page_num);
+
+			$page_container.find(options.nav_info_id).html(options.nav_label_info.replace("{0}",start_from+1).
+					replace("{1}",start_from + items.length).replace("{2}",$items.length));
+
+			// Hide the more and/or less indicators
+//			toggleMoreLess();
+
+			// Add a class to the next or prev links if there are no more pages next or previous to the active page
+			tagNextPrev();
+		};
+
+
         // Set some state information
         var current_page = 'current_page';
 		var items_per_page = 'items_per_page';
@@ -211,40 +247,6 @@
 				
 		};
 			
-		function gotopage(page_num){
-			
-			var ipp = parseInt(meta.data(items_per_page));
-			
-			var isLastPage = false;
-			
-			// Find the start of the next slice
-			start_from = page_num * ipp;
-			
-			// Find the end of the next slice
-			end_on = start_from + ipp;
-			// Hide the current page	
-			var items = $items.hide().slice(start_from, end_on);
-			
-			items.fadeIn(500);
-			
-			// Reassign the active class
-			$page_container.find(options.nav_panel_id).children('.page_link[longdesc=' + page_num +']').addClass('active_page '+ jquery_ui_active_class)
-													 .siblings('.active_page')
-													 .removeClass('active_page ' + jquery_ui_active_class);										 
-			
-			// Set the current page meta data							
-			meta.data(current_page,page_num);
-			
-			$page_container.find(options.nav_info_id).html(options.nav_label_info.replace("{0}",start_from+1).
-					replace("{1}",start_from + items.length).replace("{2}",$items.length));
-			
-			// Hide the more and/or less indicators
-//			toggleMoreLess();
-			
-			// Add a class to the next or prev links if there are no more pages next or previous to the active page
-			tagNextPrev();
-		};	
-		
 		// Methods to shift the diplayed index of page numbers to the left or right
 		function movePageNumbersLeft(e, new_p){
 			var new_page = new_p;

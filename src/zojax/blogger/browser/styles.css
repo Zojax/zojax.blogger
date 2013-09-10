@@ -267,13 +267,15 @@
 }
 
 .show-all,
+.paginate-post,
 .page_navigation {
     float: right;
 }
 .post-pages {
     list-style: none;
 }
-a.page_link.hidden {
+a.page_link.hidden,
+a.paginate-post {
     display: none;
 }
 .info_text {

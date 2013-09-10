@@ -43,7 +43,8 @@
           <div class="page_navigation"></div>
       </div>
       <div class="visualClear"></div>
-          <a class="show-all" href="#">View As One Page</a>
+      <a tal:condition="python: len(view.pages)>1" class="show-all" href="#">View As One Page</a>
+      <a tal:condition="python: len(view.pages)>1" class="paginate-post" href="#">Pginate blog post</a>
   </div>
 
   <ul class="blogger-footer" tal:condition="view/footer">

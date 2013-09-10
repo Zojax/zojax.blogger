@@ -8,13 +8,26 @@ $(document).ready(function (){
 //        nav_order : ["first", "prev", "next", "last"],
         jquery_ui_active: "hidden",
         jquery_ui_default: "hidden",
-        jquery_ui: true
+        jquery_ui: true,
+        nav_label_prev : '« Prev',
+        nav_label_next : 'Next »',
+        abort_on_small_lists: true
+
     });
 
     $("a.show-all").click(function(){
         $("#pager_container li").show();
-        $(this).hide();
         $(".page_navigation").hide();
+        $(this).hide();
+        $(".paginate-post").show();
+        return false;
+    });
+
+    $("a.paginate-post").click(function(){
+        $(".page_navigation").show();
+        $(this).hide();
+        $("a.show-all").show();
+        gotopage(0);
         return false;
     });
 });
