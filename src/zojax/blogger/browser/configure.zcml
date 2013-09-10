@@ -199,6 +199,11 @@
   <browser:icon
      name="zmi_icon"
      file="icons/blog.png"
+     for="zojax.content.content_advanced_blogpost" />
+
+  <browser:icon
+     name="zmi_icon"
+     file="icons/blog.png"
      for="zojax.content.workspace_blog" />
 
   <browser:icon
