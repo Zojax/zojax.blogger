@@ -126,7 +126,7 @@
 			// And hide all pages
 			$items.hide();
 			// Show the first page			
-			$items.slice(0, meta.data(items_per_page)).show();
+			$items.slice(0, meta.data(items_per_page)).fadeIn(500);
 
 			/* Setup Nav Menu Display */
 			// Page number slices
@@ -225,7 +225,7 @@
 			// Hide the current page	
 			var items = $items.hide().slice(start_from, end_on);
 			
-			items.show();
+			items.fadeIn(500);
 			
 			// Reassign the active class
 			$page_container.find(options.nav_panel_id).children('.page_link[longdesc=' + page_num +']').addClass('active_page '+ jquery_ui_active_class)
