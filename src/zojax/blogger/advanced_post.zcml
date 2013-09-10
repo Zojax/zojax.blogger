@@ -56,10 +56,10 @@
     <implements interface="zojax.content.featured.interfaces.IContentFeaturable" />
   </class>
 
-  <utility
-      name="advancedBlogpostPublished"
-      component=".indexes.advancedBlogpostText"
-      provides="zojax.catalog.interfaces.ICatalogIndexFactory"/>
+  <!--<utility-->
+      <!--name="advancedBlogpostPublished"-->
+      <!--component=".indexes.advancedBlogpostText"-->
+      <!--provides="zojax.catalog.interfaces.ICatalogIndexFactory"/>-->
 
   <!--<utility-->
       <!--name="advancedBlogpostText"-->
