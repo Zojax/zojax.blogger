@@ -189,7 +189,9 @@ class AdvancedBlogPostView(BlogPostView):
 
 
 class AdvancedPostView(PostView):
-
+    """
+    Advanced post view
+    """
     def update(self):
         super(AdvancedPostView, self).update()
         self.pages = [getattr(p.text, 'cooked', '') for p in self.context.text]
