@@ -131,7 +131,6 @@ class Pages(object):
 
     def publishTraverse(self, request, name):
         context = self.context
-        # import ipdb; ipdb.set_trace()
         try:
             return LocationProxy(context.pages[int(name)-1], self.context, name)
         except ValueError, e:

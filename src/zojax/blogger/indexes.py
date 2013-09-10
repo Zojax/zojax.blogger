@@ -16,7 +16,7 @@
 $Id$
 """
 from zc.catalog.catalogindex import ValueIndex
-from interfaces import IBlogPost
+from interfaces import IBlogPost, IAdvancedBlogPost
 
 
 def blogpostPublished():
@@ -24,5 +24,5 @@ def blogpostPublished():
 
 
 def advancedBlogpostText():
-    import ipdb; ipdb.set_trace()
-    return ValueIndex('published', IBlogPost)
+    # import ipdb; ipdb.set_trace()
+    return ValueIndex('published', IAdvancedBlogPost)

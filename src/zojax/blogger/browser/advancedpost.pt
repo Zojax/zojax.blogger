@@ -38,9 +38,7 @@
       <div id="pager_container" class="pager_container">
           <div class="page_navigation"></div>
           <ul class="post-pages">
-              <li tal:repeat="page view/pages" tal:content="structure page">
-                  <!--<div class="content" tal:content="structure page"></div>-->
-              </li>
+              <li tal:repeat="page view/pages" tal:content="structure page"></li>
           </ul>
           <div class="page_navigation"></div>
       </div>

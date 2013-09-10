@@ -261,7 +261,6 @@
     text-transform: capitalize;
     padding: 2px 4px 1px;
     font-size: 11px;
-    /*float: left;*/
     color: #FFFFFF;
     border-radius: 3px 3px 3px 3px;
     border: 1px solid #666666;
@@ -271,8 +270,16 @@
 .page_navigation {
     float: right;
 }
-
 .post-pages {
     list-style: none;
 }
+a.page_link.hidden {
+    display: none;
+}
+.info_text {
+    padding-left: 5px;
+    padding-right: 5px;
+    font-size: 14px;
+}
+
 }

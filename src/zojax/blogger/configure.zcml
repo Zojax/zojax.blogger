@@ -192,7 +192,7 @@
      name="jquery.pajinate.js"
      library="zojax" type="javascript"
      require="jquery"
-     file="resources/pajinate/jquery.pajinate.min.js"/>
+     file="resources/pajinate/jquery.pajinate.js"/>
 
   <zojax:resourceinclude
      name="blog_paginator.js"

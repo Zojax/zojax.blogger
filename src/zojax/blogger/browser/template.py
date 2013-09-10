@@ -73,8 +73,7 @@ class BlogPostNotificationMail(object):
 
     def text(self):
         if IAdvancedBlogPost.providedBy(self.post):
-            pages = sorted(self.context.text, key=lambda x: x.position)
-            text = ''.join([getattr(p.text, 'cooked', '') for p in pages])
+            text = self.post.full_post_text
         else:
             text = self.post.text.cooked
 

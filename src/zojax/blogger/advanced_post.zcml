@@ -58,7 +58,7 @@
 
   <utility
       name="advancedBlogpostPublished"
-      component=".indexes.blogpostPublished"
+      component=".indexes.advancedBlogpostText"
       provides="zojax.catalog.interfaces.ICatalogIndexFactory"/>
 
   <!--<utility-->

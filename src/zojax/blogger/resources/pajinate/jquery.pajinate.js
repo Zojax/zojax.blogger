@@ -92,13 +92,14 @@
 					navigation_html += '<a class="previous_link '+ jquery_ui_default_class +'" href="">'+ options.nav_label_prev +'</a>';
 					break;
 				case "num":
-					navigation_html += less;
+//					navigation_html += less;
 					var current_link = 0;
 					while(number_of_pages > current_link){
-						navigation_html += '<a class="page_link '+ jquery_ui_default_class +'" href="" longdesc="' + current_link +'">'+ (current_link + 1) +'</a>';
+						navigation_html += '<a style="display: none!important;" class="page_link '+ jquery_ui_default_class +'" href="" longdesc="' + current_link +'">'+ (current_link + 1) +'</a>';
 						current_link++;
 					}
-					navigation_html += more;
+					navigation_html += '<span class="info_text"></span>';
+//					navigation_html += more;
 					break;
 				default:
 					break;
@@ -136,9 +137,9 @@
 			$nav_panels.children('.page_link').hide(); // Hide all the page links
 			
 			// And only show the number we should be seeing
-			$nav_panels.each(function(){
-				$(this).children('.page_link').slice(0, options.num_page_links_to_display).show();			
-			});
+//			$nav_panels.each(function(){
+//				$(this).children('.page_link').slice(0, options.num_page_links_to_display).show();
+//			});
 			
 			/* Bind the actions to their respective links */
 			 
@@ -238,7 +239,7 @@
 					replace("{1}",start_from + items.length).replace("{2}",$items.length));
 			
 			// Hide the more and/or less indicators
-			toggleMoreLess();
+//			toggleMoreLess();
 			
 			// Add a class to the next or prev links if there are no more pages next or previous to the active page
 			tagNextPrev();
@@ -256,7 +257,7 @@
 							$(this).children('.page_link')
 								.hide() // Hide all the page links
 								.slice(parseInt(new_page - options.num_page_links_to_display + 1) , new_page + 1)
-								.show();		
+//								.show();
 							});
 			}
 			
@@ -273,7 +274,7 @@
 							$(this).children('.page_link')
 								.hide() // Hide all the page links
 								.slice( new_page , new_page + parseInt(options.num_page_links_to_display))
-								.show();
+//								.show();
 							});
 			}
 		}
@@ -286,7 +287,7 @@
 			}else {
 				$nav_panels.children('.more').hide();
 			}
-			
+
 			if(!$nav_panels.children('.page_link:visible').hasClass('first')){
 				$nav_panels.children('.less').show();
 			}else {
