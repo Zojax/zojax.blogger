@@ -189,11 +189,8 @@ class AdvancedBlogPostView(BlogPostView):
 
 
 class AdvancedPostView(PostView):
-    """
-    Advanced post view
-    """
+
     def update(self):
         super(AdvancedPostView, self).update()
-        # pages = sorted(self.context.text, key=lambda x: x.position)
         self.pages = [getattr(p.text, 'cooked', '') for p in self.context.text]
         self.draft = IDraftedContent.providedBy(self.context)
