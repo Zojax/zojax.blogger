@@ -269,6 +269,7 @@
 
 .page_navigation {
     float: right;
+    padding-bottom: 10px;
 }
 .show-all,
 .paginate-post {
@@ -290,5 +291,8 @@ a.paginate-post {
 }
 li.item {
     padding-bottom: 20px;
+}
+#z-portal-viewspace {
+    margin-right: 17px;
 }
 }
