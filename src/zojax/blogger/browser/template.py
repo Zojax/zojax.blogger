@@ -73,7 +73,7 @@ class BlogPostNotificationMail(object):
 
     def text(self):
         if IAdvancedBlogPost.providedBy(self.post):
-            text = self.post.full_post_text
+            text = self.post.text
         else:
             text = self.post.text.cooked
 

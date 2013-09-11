@@ -188,9 +188,9 @@ class IBlogPostPage(interface.Interface):
 class IAdvancedBlogPost(IBlogPost):
     """ Advanced Blog post """
 
-    #text = interface.Attribute("Object's Text")
+    text = interface.Attribute("Object's Text")
 
-    text = schema.List(
+    pages = schema.List(
         title=_(u"Pages"),
         value_type=schema.Object(
             title=_(u'page'),

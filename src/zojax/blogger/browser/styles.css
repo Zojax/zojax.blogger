@@ -206,50 +206,50 @@
 
 
 /* edit form */
-.form-widgets-text .multi-widget .row {
+.form-widgets-pages .multi-widget .row {
   background: #fff url(portlet-imagerotator/images/sprite.png) -145px 2px no-repeat;
   border: 1px solid #D3D3D3;
   margin: 0 0 3px 0!important;
   padding: 3px 3px 3px 17px;
 }
-.form-widgets-text .closed,
-.form-widgets-text .open {
+.form-widgets-pages .closed,
+.form-widgets-pages .open {
   background: url(portlet-imagerotator/images/sprite.png) 730px -18px no-repeat;
 }
-.form-widgets-text .open {
+.form-widgets-pages .open {
   background-position: 747px -34px;
 }
-.form-widgets-text .object-widget {
+.form-widgets-pages .object-widget {
   clear: both;
   overflow: hidden;
 }
-.form-widgets-text .multi-widget-input .label,
-.form-widgets-text .multi-widget-input .widget {
+.form-widgets-pages .multi-widget-input .label,
+.form-widgets-pages .multi-widget-input .widget {
   margin: 3px 0;
 }
-.form-widgets-text .multi-widget-input .label {
+.form-widgets-pages .multi-widget-input .label {
   float: left;
   width: 10%;
   clear: both;
 }
-.form-widgets-text .multi-widget-input .widget {
+.form-widgets-pages .multi-widget-input .widget {
   width: 90%;
   float: right;
 }
-.form-widgets-text .multi-widget-input .option .label {
+.form-widgets-pages .multi-widget-input .option .label {
   float: none;
 }
-.form-widgets-text .multi-widget .z-form-field {
+.form-widgets-pages .multi-widget .z-form-field {
   margin-top: 0;
 }
-.form-widgets-text .imagefield-field {
+.form-widgets-pages .imagefield-field {
   margin-top: 4px;
 }
-.z-form .form-widgets-text .object-widget input,
-.wizard .form-widgets-text .x-html-editor-wrap {
+.z-form .form-widgets-pages .object-widget input,
+.wizard .form-widgets-pages .x-html-editor-wrap {
   margin-left: 0px!important;
  }
-.wizard .form-widgets-text .x-html-editor-wrap {
+.wizard .form-widgets-pages .x-html-editor-wrap {
   width: 598px!important;
 }
 

@@ -68,19 +68,19 @@ class AdvancedBlogPost(BlogPost):
     interface.implements(IAdvancedBlogPost)
 
     @getproperty
-    def text(self):
-        return self.__dict__.get('text', [])
+    def pages(self):
+        return self.__dict__.get('pages', [])
 
     @setproperty
-    def text(self, value):
-        old = self.text
+    def pages(self, value):
+        old = self.pages
         if value is not None:
             if len(value) > len(old):
                 old.extend(value[len(old):])
             else:
                 old = old[:len(value)]
         else:
-            self.__data__['text'] = []
+            self.__data__['pages'] = []
             return
         for k, v in enumerate(value):
             ov = old[k]
@@ -90,11 +90,11 @@ class AdvancedBlogPost(BlogPost):
 
         # NOTE: sort by position
         old = sorted(old, key=lambda x: x.position)
-        self.__dict__['text'] = old
+        self.__dict__['pages'] = old
 
     @property
-    def full_post_text(self):
-        return ''.join([getattr(page.text, 'cooked', '') for page in self.text])
+    def text(self):
+        return ''.join([getattr(page.text, 'cooked', '') for page in self.pages])
 
 
 class PostSearchableText(ContentSearchableText):
@@ -114,7 +114,7 @@ class AdvancedBlogPostSearchableText(ContentSearchableText):
     def getSearchableText(self):
         text = super(AdvancedBlogPostSearchableText, self).getSearchableText()
         try:
-            return text + u' ' + self.content.full_post_text
+            return text + u' ' + self.content.text
         except AttributeError:
             return text
 

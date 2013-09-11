@@ -19,15 +19,12 @@
   <class class=".post.AdvancedBlogPost">
     <implements interface="zojax.activity.interfaces.IActivityAware" />
     <implements interface="zojax.ownership.interfaces.IOwnerAware" />
-    <implements
-       interface="zojax.content.attachment.interfaces.IAttachmentsAware" />
-    <implements
-       interface="zojax.content.discussion.interfaces.IOpenDiscussible" />
+    <implements interface="zojax.content.attachment.interfaces.IAttachmentsAware" />
+    <implements interface="zojax.content.discussion.interfaces.IOpenDiscussible" />
     <implements interface="zojax.content.type.interfaces.ITitleBasedName" />
-    <implements
-       interface="zojax.content.type.interfaces.ISearchableContent" />
-    <implements
-       interface="zojax.content.tagging.interfaces.IContentTaggable" />
+    <implements interface="zojax.content.type.interfaces.ISearchableContent" />
+    <implements interface="zojax.content.tagging.interfaces.IContentTaggable" />
+
 
     <require
        permission="zope.Public"
@@ -56,14 +53,9 @@
     <implements interface="zojax.content.featured.interfaces.IContentFeaturable" />
   </class>
 
-  <!--<utility-->
-      <!--name="advancedBlogpostPublished"-->
-      <!--component=".indexes.advancedBlogpostText"-->
-      <!--provides="zojax.catalog.interfaces.ICatalogIndexFactory"/>-->
-
-  <!--<utility-->
-      <!--name="advancedBlogpostText"-->
-      <!--component=".indexes.advancedBlogpostText"-->
-      <!--provides="zojax.catalog.interfaces.ICatalogIndexFactory"/>-->
+  <utility
+      name="advancedBlogpostPublished"
+      component=".indexes.advancedBlogpostPublished"
+      provides="zojax.catalog.interfaces.ICatalogIndexFactory"/>
 
 </configure>

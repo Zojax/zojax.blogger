@@ -194,5 +194,5 @@ class AdvancedPostView(PostView):
     """
     def update(self):
         super(AdvancedPostView, self).update()
-        self.pages = [getattr(p.text, 'cooked', '') for p in self.context.text]
+        self.pages = [getattr(p.text, 'cooked', '') for p in self.context.pages]
         self.draft = IDraftedContent.providedBy(self.context)

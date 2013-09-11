@@ -23,6 +23,5 @@ def blogpostPublished():
     return ValueIndex('published', IBlogPost)
 
 
-def advancedBlogpostText():
-    # import ipdb; ipdb.set_trace()
+def advancedBlogpostPublished():
     return ValueIndex('published', IAdvancedBlogPost)
