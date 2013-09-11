@@ -266,13 +266,18 @@
     border: 1px solid #666666;
 }
 
-.show-all,
-.paginate-post,
+
 .page_navigation {
+    float: right;
+}
+.show-all,
+.paginate-post {
+    padding-top: 8px;
     float: right;
 }
 .post-pages {
     list-style: none;
+    display: inline-block;
 }
 a.page_link.hidden,
 a.paginate-post {
@@ -283,5 +288,7 @@ a.paginate-post {
     padding-right: 5px;
     font-size: 14px;
 }
-
+li.item {
+    padding-bottom: 20px;
+}
 }
