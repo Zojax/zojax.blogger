@@ -2,8 +2,8 @@ $(document).ready(function() {
 
     // Sort
     $(".form-widgets-pages .multi-widget").children().each(function(index) {
-        if ($(this).attr('id') == 'form-widgets-text-'+index+'-row') {
-            $('#form-widgets-text-'+index+'-widgets-position').val(index);
+        if ($(this).attr('id') == 'form-widgets-pages-'+index+'-row') {
+            $('#form-widgets-pages-'+index+'-widgets-position').val(index);
         }
     });
 
@@ -14,9 +14,9 @@ $(document).ready(function() {
             parent = ui.item.parent();
             parent.children().each(function(index) {
                 var Id = $(this).attr('id');
-                Id = Id.replace('form-widgets-text-', '');
+                Id = Id.replace('form-widgets-pages-', '');
                 Id = Id.replace('-row', '');
-                $('#form-widgets-text-'+Id+'-widgets-position').val(index);
+                $('#form-widgets-pages-'+Id+'-widgets-position').val(index);
             });
         }
     }).disableSelection();
