@@ -301,5 +301,10 @@ li.item {
 .bx-wrapper .bx-viewport {
     box-shadow: none !important;
 }
-
+.bx-wrapper .bx-pager.bx-default-pager a:hover, .bx-wrapper .bx-pager.bx-default-pager a.active {
+    background: none repeat scroll 0 0 rgb(255, 0, 0) !important;
+}
+.bx-wrapper .bx-pager.bx-default-pager a {
+    background: none repeat scroll 0 0 #8c8685 !important;
+}
 }
