@@ -8,8 +8,18 @@
      name="zojax-blogger.css"
      library="zojax" type="stylesheet" file="styles.css" filetype="zrt" />
 
+  <zojax:resourceinclude
+     name="jquery.bxslider.css"
+     library="zojax" type="stylesheet" filetype="zrt"
+     file="../resources/jquery.bxslider/jquery.bxslider.css"/>
+
+
   <zojax:resourcedirectory
      name="blogger-images"
      directory="icons" />
+
+  <zojax:resourcedirectory
+     name="pager-images"
+     directory="../resources/jquery.bxslider/images" />
 
 </configure>

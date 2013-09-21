@@ -188,11 +188,18 @@
   <!-- translations -->
   <i18n:registerTranslations directory="locales"/>
 
+  <!--<zojax:resourceinclude-->
+     <!--name="jquery.pajinate.js"-->
+     <!--library="zojax" type="javascript"-->
+     <!--require="jquery"-->
+     <!--file="resources/pajinate/jquery.pajinate.custom.min.js"/>-->
+
   <zojax:resourceinclude
-     name="jquery.pajinate.js"
+     name="jquery.bxslider.min.js"
      library="zojax" type="javascript"
      require="jquery"
-     file="resources/pajinate/jquery.pajinate.custom.min.js"/>
+     file="resources/jquery.bxslider/jquery.bxslider.js"/>
+
 
   <zojax:resourceinclude
      name="blog_paginator.js"
