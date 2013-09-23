@@ -274,7 +274,7 @@
     margin: 5px;
 }
 .page_navigation {
-    padding: 30px 0 40px 0;
+    padding: 15px 0 40px 0;
 }
 
 .show-all,
@@ -306,5 +306,10 @@ li.item {
 }
 .bx-wrapper .bx-pager.bx-default-pager a {
     background: none repeat scroll 0 0 #8c8685 !important;
+}
+
+.blogger-advanced-post-heading-title {
+    font-size: 18px;
+    line-height: normal;
 }
 }
