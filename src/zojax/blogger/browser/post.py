@@ -16,12 +16,11 @@
 $Id$
 """
 import urllib
-from zope import interface
+from zojax.resourcepackage.library import include
 import re
 from zope.component import getUtility, getMultiAdapter, queryMultiAdapter
 from zope.proxy import removeAllProxies
 from zope.security import checkPermission
-from zope.app.component.hooks import getSite
 from zope.app.intid.interfaces import IIntIds
 from zope.traversing.browser import absoluteURL
 from zope.cachedescriptors.property import Lazy
@@ -31,7 +30,6 @@ from zojax.content.type.interfaces import IDraftedContent
 from zojax.content.forms.content import ContentBasicFields
 from zojax.content.discussion.interfaces import IContentDiscussion
 from zojax.principal.profile.interfaces import IPersonalProfile
-from zojax.statusmessage.interfaces import IStatusMessage
 
 from zojax.cache.view import cache
 from zojax.cache.keys import ContextModified
@@ -196,3 +194,4 @@ class AdvancedPostView(PostView):
         super(AdvancedPostView, self).update()
         self.pages = [getattr(p.text, 'cooked', '') for p in self.context.pages]
         self.draft = IDraftedContent.providedBy(self.context)
+        include('blogger-advanced-post-js')

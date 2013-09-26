@@ -196,16 +196,16 @@
 
   <zojax:resourceinclude
      name="jquery.bxslider.min.js"
-     library="zojax" type="javascript"
+     library="blogger-advanced-post-js" type="javascript"
      require="jquery"
      file="resources/jquery.bxslider/jquery.bxslider.js"/>
 
 
-  <!--zojax:resourceinclude
+  <zojax:resourceinclude
      name="blog_paginator.js"
-     library="zojax" type="javascript"
+     library="blogger-advanced-post-js" type="javascript"
      require="jquery"
-     file="resources/blog_paginator.js"/-->
+     file="resources/blog_paginator.js"/>
 
   <zojax:resourceinclude
      name="pages_dragdrop.js"
