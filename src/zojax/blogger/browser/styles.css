@@ -270,8 +270,9 @@
 }
 .page_navigation .info{
     float: right;
-    font-size: 15px;
     margin: 5px;
+    font-family: Arial,Helvetica,sans-serif;
+    font-size: 13pt;
 }
 .page_navigation {
     padding: 5px 0 40px 0;
