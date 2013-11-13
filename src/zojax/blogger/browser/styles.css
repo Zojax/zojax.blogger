@@ -1,6 +1,6 @@
 /* zrt-cssregistry: */
 
-@media all { 
+@media all {
 
   .blogger-content {
     overflow: hidden;
@@ -13,7 +13,7 @@
   .blogger-listing {
   }
 
-  .blogger-listing .blogger-post { 
+  .blogger-listing .blogger-post {
     padding: 1em;
   }
 
@@ -64,7 +64,7 @@
     text-decoration: none;
     color: globalExtraColor;
   }
-  
+
   .blogger-post-byline a:hover {
     color: linkColor;
     text-decoration: none;
@@ -163,9 +163,9 @@
   /*
   ** Blogger: listing of blogs
   */
-  
+
   .blogger-blogs-listing {
-  
+
   }
 
   .blogger-blogs-listing-table {
@@ -200,7 +200,7 @@
   }
 
   /* Portlets */
-  .portlet-blogger-contentposts .blogger-listing { 
+  .portlet-blogger-contentposts .blogger-listing {
     font-size: 110%;
   }
 
@@ -273,6 +273,7 @@
     margin: 5px;
     font-family: Arial,Helvetica,sans-serif;
     font-size: 13px;
+    color: #66727a;
 }
 .page_navigation {
     padding: 5px 0 40px 0;
