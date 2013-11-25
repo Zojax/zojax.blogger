@@ -188,12 +188,6 @@
   <!-- translations -->
   <i18n:registerTranslations directory="locales"/>
 
-  <!--<zojax:resourceinclude-->
-     <!--name="jquery.pajinate.js"-->
-     <!--library="zojax" type="javascript"-->
-     <!--require="jquery"-->
-     <!--file="resources/pajinate/jquery.pajinate.custom.min.js"/>-->
-
   <zojax:resourceinclude
      name="jquery.bxslider.min.js"
      library="blogger-advanced-post-js" type="javascript"
@@ -209,7 +203,7 @@
 
   <zojax:resourceinclude
      name="pages_dragdrop.js"
-     library="zojax" type="javascript"
+     library="blogger-advanced-post-form-js" type="javascript"
      require="jquery jquery-plugins"
      file="resources/dragdrop.js"/>
 

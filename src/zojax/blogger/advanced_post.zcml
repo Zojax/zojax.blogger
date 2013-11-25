@@ -39,6 +39,23 @@
 
   <adapter factory=".post.AdvancedBlogPostSearchableText" />
 
+  <zojax:pagelet
+     name="context.html"
+     for=".interfaces.IAdvancedBlogPost"
+     class=".post.AdvancedBlogPostEditForm"
+     allowed_attributes="actions upperContainer"
+     provides="zojax.wizard.interfaces.IWizardWithTabs"
+     permission="zope.View" />
+
+  <zojax:pagelet
+     name="content"
+     type="wizard.step"
+     for=".interfaces.IAdvancedBlogPost
+	  zojax.content.draft.browser.interfaces.IAddContentWizard"
+     class=".post.AdvancedBlogPostAddForm"
+     weight="100" />
+
+
   <zojax:draft
      content="content.advanced_blogpost"
      publish="zojax.AddBlogPost"
