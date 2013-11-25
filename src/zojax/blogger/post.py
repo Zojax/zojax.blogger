@@ -1,3 +1,11 @@
+from zojax.content.draft.browser.adding import AddContentWizard
+from zojax.content.forms.content import ContentStep
+from zojax.content.forms.interfaces import IEditContentWizard, IAddContentWizard
+from zojax.content.forms.wizardedit import EditContentWizard
+from zojax.resourcepackage.library import include
+from zojax.wizard.interfaces import ISaveable
+
+
 ##############################################################################
 #
 # Copyright (c) 2009 Zope Foundation and Contributors.
@@ -143,3 +151,19 @@ class Pages(object):
             raise
 
         raise NotFound(self.context, self.__name__, request)
+
+
+class AdvancedBlogPostEditForm(EditContentWizard):
+    interface.implements(ISaveable, IEditContentWizard)
+
+    def __init__(self, *args, **kw):
+        include('blogger-advanced-post-form-js')
+        super(AdvancedBlogPostEditForm, self).__init__(*args, **kw)
+
+
+class AdvancedBlogPostAddForm(ContentStep):
+    interface.implements(ISaveable)
+
+    def __init__(self, *args, **kw):
+        include('blogger-advanced-post-form-js')
+        super(AdvancedBlogPostAddForm, self).__init__(*args, **kw)
