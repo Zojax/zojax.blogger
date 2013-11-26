@@ -1,5 +1,6 @@
 $(document).ready(function() {
 
+    var NO_TOGGLE = false;
     // Sort
     $(".form-widgets-pages .multi-widget").children().each(function(index) {
         if ($(this).attr('id') == 'form-widgets-pages-'+index+'-row') {
@@ -14,10 +15,14 @@ $(document).ready(function() {
             parent = ui.item.parent();
             parent.children().each(function(index) {
                 var Id = $(this).attr('id');
+                console.log("id")
                 Id = Id.replace('form-widgets-pages-', '');
                 Id = Id.replace('-row', '');
                 $('#form-widgets-pages-'+Id+'-widgets-position').val(index);
             });
+        },
+        start : function(){
+            NO_TOGGLE = true;
         }
     }).disableSelection();
 
@@ -27,6 +32,10 @@ $(document).ready(function() {
     $(".form-widgets-pages .multi-widget .row > div.label").addClass("closed");
 
     var toggleItem = function() {
+        if (NO_TOGGLE) {
+            NO_TOGGLE = false;
+            return false;
+        }
         var $glideElement = $(this);
 	    if ($glideElement.next().is(":hidden")) {
 		    // show it

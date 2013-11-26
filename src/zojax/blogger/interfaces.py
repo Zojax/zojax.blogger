@@ -196,5 +196,5 @@ class IAdvancedBlogPost(IBlogPost):
             title=_(u'page'),
             schema=IBlogPostPage),
         default=[],
-        required=False)
+        required=True)
 
