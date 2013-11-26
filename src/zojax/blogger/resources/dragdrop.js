@@ -15,7 +15,6 @@ $(document).ready(function() {
             parent = ui.item.parent();
             parent.children().each(function(index) {
                 var Id = $(this).attr('id');
-                console.log("id")
                 Id = Id.replace('form-widgets-pages-', '');
                 Id = Id.replace('-row', '');
                 $('#form-widgets-pages-'+Id+'-widgets-position').val(index);
