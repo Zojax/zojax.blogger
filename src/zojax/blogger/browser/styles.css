@@ -314,4 +314,7 @@ li.item {
     font-size: 18px;
     line-height: normal;
 }
+.z-form-field .error {
+    position: relative !important;
+}
 }

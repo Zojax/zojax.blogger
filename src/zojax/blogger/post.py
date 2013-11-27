@@ -94,6 +94,8 @@ class AdvancedBlogPost(BlogPost):
             ov = old[k]
             if v.text:
                 ov.text = v.text
+            else:
+                ov.text = u''
             ov.position = v.position
 
         # NOTE: sort by position
