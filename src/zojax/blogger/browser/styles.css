@@ -317,4 +317,9 @@ li.item {
 .z-form-field .error {
     position: relative !important;
 }
+
+.tinymce-text-widget.richtext-field {
+    height: 200px;
+}
+
 }
