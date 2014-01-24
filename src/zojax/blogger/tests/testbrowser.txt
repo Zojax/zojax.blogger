@@ -94,23 +94,26 @@ Ccreate blog post
     >>> admin.open('http://localhost/space/blog/+/content.blogpost')
     >>> admin.getControl('Title').value = 'Some Post'
     >>> admin.getControl('Text', index=0).value = 'Post Text'
-    >>> admin.getControl('Publish Date / Time').value = '01/01/01 01:01'
+    >>> admin.getControl('Publish Date / Time').value = '01/01/01 1:01 AM'
     >>> admin.getControl('Publish', index=1).click()
 
     >>> print admin.contents
     <html>
-    ...Your Blog post has been published...
-    <div class="blogger-post">
+    ...
+    <div class="statusMessage">Your Blog post has been published.</div>
+    ...
       <div class="blogger-comments-label">
         <a title="Go to post comments" href="#comments">
           0 comments
         </a>
       </div>
+    <BLANKLINE>
       <span class="blogger-avatar">
-        <a href="http://localhost/people/manager/">
+        <a href="http://localhost/people/manager/profile/">
           <img title="Profile of Manager" src="http://localhost/@@profile.avatar/0" />
         </a>
       </span>
+    <BLANKLINE>
       <h3 class="blogger-post-heading">
         Some Post
         <span class="blogger-post-location">
@@ -118,11 +121,11 @@ Ccreate blog post
           <a href="http://localhost/space/blog/">Blog</a>
         </span>
       </h3>
+    <BLANKLINE>
       <div class="blogger-post-byline">
         Posted by
-        <a href="http://localhost/people/manager/" title="See author's profile">Manager</a>
-        <span class="blogger-post-date">...</span>
-      </div>
+        <a href="http://localhost/people/manager/profile/" title="See author's profile">Manager</a>
+    ...
       <div class="blogger-post-content">Post Text</div>
     ...
     </html>
@@ -131,18 +134,18 @@ Ccreate blog post
     >>> print admin.contents
     <html>
     ...
-    ...<h1 class="z-content-title">
+      <h1 class="z-content-title">
       Blog,
-      1 2001
+      January 2001
     </h1>...
     ...
-    <h3 class="blogger-post-heading">
-        <a class="blogger-post-heading-title" href="http://localhost/space/blog/some-post/">Some Post</a>
-        <span class="blogger-post-location">
-          in
-          <a href="http://localhost/space/blog/">Blog</a>
-        </span>
-    </h3>
+        <h3 class="blogger-post-heading">
+          <a class="blogger-post-heading-title" href="http://localhost/space/blog/some-post/">Some Post</a>
+          <span class="blogger-post-location">
+            in
+            <a href="http://localhost/space/blog/">Blog</a>
+          </span>
+        </h3>
     ...
     </html>
 
@@ -151,17 +154,17 @@ Ccreate blog post
     >>> print admin.contents
     <html>
     ...
-    <tbody>
-          <tr class="z-table-record odd">
-            <td class="z-table-cell-min"><input type="checkbox" name="ids:list" value="2001" /></td> <td class="z-table-cell-min"><img src="http://localhost/@@/zojax-content-type-interfaces-IContent-zmi_icon.png" alt="Content" width="16" height="16" border="0" /></td> <td><a href="http://localhost/space/blog/2001/context.html">2001</a></td> <td>2001</td> <td>1 item</td> <td>...</td> <td>...</td>
-          </tr> <tr class="z-table-record even">
-            <td class="z-table-cell-min"><input type="checkbox" name="ids:list" value="category" /></td> <td class="z-table-cell-min"><img src="http://localhost/@@/zojax-content-type-interfaces-IContent-zmi_icon.png" alt="Content" width="16" height="16" border="0" /></td> <td><a href="http://localhost/space/blog/category/context.html">category</a></td> <td>[No title]</td> <td>0 items</td> <td>...</td> <td>...</td>
-          </tr> <tr class="z-table-record odd">
-            <td class="z-table-cell-min"><input type="checkbox" name="ids:list" value="some-post" /></td> <td class="z-table-cell-min"><img src="http://localhost/@@/zojax-blogger-interfaces-IBlogPost-zmi_icon.png" alt="BlogPost" width="16" height="16" border="0" /></td> <td><a href="http://localhost/space/blog/some-post/context.html">some-post</a></td> <td>Some Post</td> <td>1 KB</td> <td>...</td> <td>...</td>
-          </tr> <tr class="z-table-record even">
-            <td class="z-table-cell-min"><input type="checkbox" name="ids:list" value="tags" /></td> <td class="z-table-cell-min"></td> <td><a href="http://localhost/space/blog/tags/context.html">tags</a></td> <td>[No title]</td> <td>n/a</td>  <td></td> <td>---</td>
-          </tr>
-        </tbody>
+      <tbody>
+        <tr class="z-table-record odd">
+          <td class="z-table-cell-min"></td> <td class="z-table-cell-min"><img src="http://localhost/@@/zojax-content-type-interfaces-IContent-zmi_icon.png" alt="Content" width="16" height="16" border="0" /></td> <td><a href="http://localhost/space/blog/2001/context.html">2001</a></td> <td>2001</td> <td>1 item</td> <td></td> <td>---</td>
+        </tr> <tr class="z-table-record even">
+          <td class="z-table-cell-min"></td> <td class="z-table-cell-min"><img src="http://localhost/@@/zojax-content-type-interfaces-IContent-zmi_icon.png" alt="Content" width="16" height="16" border="0" /></td> <td><a href="http://localhost/space/blog/category/context.html">category</a></td> <td>[No title]</td> <td>0 items</td> <td>...</td> <td>...</td>
+        </tr> <tr class="z-table-record odd">
+          <td class="z-table-cell-min"><input type="checkbox" name="ids:list" value="some-post" /></td> <td class="z-table-cell-min"><img src="http://localhost/@@/zojax-blogger-interfaces-IBlogPost-zmi_icon.png" alt="BlogPost" width="16" height="16" border="0" /></td> <td><a href="http://localhost/space/blog/some-post/context.html">some-post</a></td> <td>Some Post</td> <td>1 KB</td> <td>...</td> <td>...</td>
+        </tr> <tr class="z-table-record even">
+          <td class="z-table-cell-min"><input type="checkbox" name="ids:list" value="tags" /></td> <td class="z-table-cell-min"></td> <td><a href="http://localhost/space/blog/tags/">tags</a></td> <td>[No title]</td> <td>n/a</td> <td></td> <td>---</td>
+        </tr>
+      </tbody>
     ...
     </html>
 
@@ -177,7 +180,7 @@ Ccreate blog post
 Edit post
 
     >>> admin.open('http://localhost/space/blog/some-post/context.html')
-    >>> admin.getControl('Publish Date / Time').value = '01/02/01 01:01'
+    >>> admin.getControl('Publish Date / Time').value = '02/02/01 01:01 AM'
     >>> admin.getControl('Save', index=1).click()
 
     >>> admin.open('http://localhost/space/blog/2001/2/')
@@ -186,7 +189,7 @@ Edit post
     ...
     ...<h1 class="z-content-title">
       Blog,
-      2 2001
+      February 2001
     </h1>...
     ...
     <h3 class="blogger-post-heading">
@@ -205,7 +208,7 @@ Edit post
     NotFound: Object: <zojax.blogger.date.Year ...>, name: u'1'
 
     >>> admin.open('http://localhost/space/blog/some-post/context.html')
-    >>> admin.getControl('Publish Date / Time').value = '01/01/01 01:01'
+    >>> admin.getControl('Publish Date / Time').value = '01/01/01 01:01 AM'
     >>> admin.getControl('Short Name').value = 'some-blog-post'
     >>> admin.getControl('Save', index=1).click()
 
@@ -215,7 +218,7 @@ Edit post
     ...
     ...<h1 class="z-content-title">
       Blog,
-      1 2001
+      January 2001
     </h1>...
     ...
     <h3 class="blogger-post-heading">
@@ -235,24 +238,28 @@ We see post text in recent blog posts portlet
     >>> print admin.contents
     <html>
     ...
-    <h2 class="z-portlet-header">
+      <h2 class="z-portlet-header">
         <a class="z-portlet-feed" title="RSS feed" href="http://localhost/@@feeds/blogposts">
           <img src="http://localhost/@@/rss-icon.png" />
         </a>
         Recent blog posts
       </h2>
+    <BLANKLINE>
       <div class="z-portlet-body blogger-listing">
         <div class="odd" id="portlet-blogger-lastpost"><div class="blogger-post">
+    <BLANKLINE>
       <div class="blogger-comments-label">
         <a title="Go to post comments" href="http://localhost/space/blog/some-blog-post/#comments">
           0 comments
         </a>
       </div>
+    <BLANKLINE>
       <span class="blogger-avatar">
-        <a href="http://localhost/people/manager/">
+        <a href="http://localhost/people/manager/profile/">
           <img title="Profile of Manager" src="http://localhost/@@profile.avatar/0" />
         </a>
       </span>
+    <BLANKLINE>
       <h3 class="blogger-post-heading">
         <a class="blogger-post-heading-title" href="http://localhost/space/blog/some-blog-post/">Some Post</a>
         <span class="blogger-post-location">
@@ -260,83 +267,23 @@ We see post text in recent blog posts portlet
           <a href="http://localhost/space/blog/">Blog</a>
         </span>
       </h3>
+    <BLANKLINE>
       <div class="blogger-post-byline">
         Posted by
-        <a href="http://localhost/people/manager/" title="See author's profile">Manager</a>
+        <a href="http://localhost/people/manager/profile/" title="See author's profile">Manager</a>
         <span class="blogger-post-date">...</span>
       </div>
+    <BLANKLINE>
       <div class="blogger-post-content">Post Text</div>
+    <BLANKLINE>
       <ul class="blogger-footer">
+    <BLANKLINE>
+    <BLANKLINE>
+    <BLANKLINE>
+    <BLANKLINE>
         <li class="blogger-footer-comments">
           <a href="http://localhost/space/blog/some-blog-post/#comments" title="Read comments">
-            0 comments</a>
-        </li>
-      </ul>
-    </div>...
-    ...
-    </html>
-
-We can use abstract field for abstract paragraph
-
-  >>> admin.open('http://localhost/settings/product/blogger')
-  >>> admin.getControl(name='configlet.widgets.usePostAbstractField:list').value = ['true']
-  >>> admin.getControl('Save').click()
-
-We set abstract in edit form
-
-  >>> admin.open('http://localhost/space/blog/some-blog-post/context.html')
-  >>> admin.getControl('Abstract').value = 'Post Abstract'
-  >>> admin.getControl('Save', index=1).click()
-
-Now we see abstract instead of text
-
-  >>> admin.open('http://localhost/testrecent.html')
-  >>> print admin.contents
-  <html>
-    ...
-    <h2 class="z-portlet-header">
-        <a class="z-portlet-feed" title="RSS feed" href="http://localhost/@@feeds/blogposts">
-          <img src="http://localhost/@@/rss-icon.png" />
-        </a>
-        Recent blog posts
-    </h2>
-    <div class="z-portlet-body blogger-listing">
-      <div class="odd" id="portlet-blogger-lastpost"><div class="blogger-post">
-      <div class="blogger-comments-label">
-        <a title="Go to post comments" href="http://localhost/space/blog/some-blog-post/#comments">
-          0 comments
-        </a>
-      </div>
-      <span class="blogger-avatar">
-        <a href="http://localhost/people/manager/">
-          <img title="Profile of Manager" src="http://localhost/@@profile.avatar/0" />
-        </a>
-      </span>
-      <h3 class="blogger-post-heading">
-        <a class="blogger-post-heading-title" href="http://localhost/space/blog/some-blog-post/">Some Post</a>
-        <span class="blogger-post-location">
-          in
-          <a href="http://localhost/space/blog/">Blog</a>
-        </span>
-      </h3>
-      <div class="blogger-post-byline">
-        Posted by
-        <a href="http://localhost/people/manager/" title="See author's profile">Manager</a>
-        <span class="blogger-post-date">...</span>
-      </div>
-      <div class="blogger-post-content">
-         Post Abstract
-      </div>
-      <div class="blogger-post-read-more">
-        <a href="http://localhost/space/blog/some-blog-post/">Read more...</a>
-      </div>
-      <ul class="blogger-footer">
-        <li class="blogger-footer-comments">
-          <a href="http://localhost/space/blog/some-blog-post/#comments" title="Read comments">
-        0 comments</a>
-        </li>
-      </ul>
-    </div>...
+    	0 comments</a>
     ...
     </html>
 
@@ -349,20 +296,29 @@ need recheck generated datetime value
     <?xml version="1.0" encoding="UTF-8"?>
     <rss xmlns:atom="http://www.w3.org/2005/Atom" version="2.0">
       <channel>
-        <title>Blog posts - Blog</title>
+        <title>Blog posts - Blog
+    </title>
         <link>http://localhost/space/blog/</link>
         <description>Recent blog posts.</description>
+    <BLANKLINE>
+    <BLANKLINE>
+    <BLANKLINE>
+    <BLANKLINE>
+    <BLANKLINE>
         <atom:link rel="self" type="application/rss+xml"
                    href="http://localhost/space/blog/@@feeds/blogposts"/>
         <item>
           <title>Some Post in Blog</title>
-          <description>Post Text</description>
+          <description type="html"><![CDATA[Post Text]]></description>
           <guid isPermaLink="true">http://localhost/space/blog/some-blog-post/</guid>
+    <BLANKLINE>
           <author> (Manager)</author>
+    <BLANKLINE>
           <pubDate>...</pubDate>
         </item>
       </channel>
     </rss>
+
 
 Delete post
 
@@ -376,7 +332,6 @@ Delete post
   There are no blog posts in this blog.
   ...
   </html>
-
 
 Disable blog workspace and uninstall product
 
