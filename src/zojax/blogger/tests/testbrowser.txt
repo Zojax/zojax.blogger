@@ -89,7 +89,7 @@ Personal content
     </html>
 
 
-Ccreate blog post
+Create blog post
 
     >>> admin.open('http://localhost/space/blog/+/content.blogpost')
     >>> admin.getControl('Title').value = 'Some Post'
@@ -232,62 +232,6 @@ Edit post
     </html>
 
 
-We see post text in recent blog posts portlet
-
-    >>> admin.open('http://localhost/testrecent.html')
-    >>> print admin.contents
-    <html>
-    ...
-      <h2 class="z-portlet-header">
-        <a class="z-portlet-feed" title="RSS feed" href="http://localhost/@@feeds/blogposts">
-          <img src="http://localhost/@@/rss-icon.png" />
-        </a>
-        Recent blog posts
-      </h2>
-    <BLANKLINE>
-      <div class="z-portlet-body blogger-listing">
-        <div class="odd" id="portlet-blogger-lastpost"><div class="blogger-post">
-    <BLANKLINE>
-      <div class="blogger-comments-label">
-        <a title="Go to post comments" href="http://localhost/space/blog/some-blog-post/#comments">
-          0 comments
-        </a>
-      </div>
-    <BLANKLINE>
-      <span class="blogger-avatar">
-        <a href="http://localhost/people/manager/profile/">
-          <img title="Profile of Manager" src="http://localhost/@@profile.avatar/0" />
-        </a>
-      </span>
-    <BLANKLINE>
-      <h3 class="blogger-post-heading">
-        <a class="blogger-post-heading-title" href="http://localhost/space/blog/some-blog-post/">Some Post</a>
-        <span class="blogger-post-location">
-          in
-          <a href="http://localhost/space/blog/">Blog</a>
-        </span>
-      </h3>
-    <BLANKLINE>
-      <div class="blogger-post-byline">
-        Posted by
-        <a href="http://localhost/people/manager/profile/" title="See author's profile">Manager</a>
-        <span class="blogger-post-date">...</span>
-      </div>
-    <BLANKLINE>
-      <div class="blogger-post-content">Post Text</div>
-    <BLANKLINE>
-      <ul class="blogger-footer">
-    <BLANKLINE>
-    <BLANKLINE>
-    <BLANKLINE>
-    <BLANKLINE>
-        <li class="blogger-footer-comments">
-          <a href="http://localhost/space/blog/some-blog-post/#comments" title="Read comments">
-    	0 comments</a>
-    ...
-    </html>
-
-
 
 We see post text in recent blog posts portlet
 
@@ -344,6 +288,71 @@ We see post text in recent blog posts portlet
      ...
      </html>
 
+        
+We can use abstract field for abstract paragraph
+    
+    >>> admin.open('http://localhost/settings/product/blogger')
+    >>> admin.getControl(name='configlet.widgets.usePostAbstractField:list').value = ['true']
+    >>> admin.getControl('Save').click()
+    
+We set abstract in edit form
+
+    >>> admin.open('http://localhost/space/blog/some-blog-post/context.html')
+    >>> admin.getControl('Abstract').value = 'Post Abstract'
+    >>> admin.getControl('Save', index=1).click()
+    
+Now we see abstract instead of text
+    >>> admin.open('http://localhost/testrecent.html')
+    >>> print admin.contents
+    <html>
+     ...
+        Recent blog posts
+      </h2>
+    <BLANKLINE>
+      <div class="z-portlet-body blogger-listing">
+        <div class="odd" id="portlet-blogger-lastpost"><div class="blogger-post">
+    <BLANKLINE>
+      <div class="blogger-comments-label">
+        <a title="Go to post comments" href="http://localhost/space/blog/some-blog-post/#comments">
+          0 comments
+        </a>
+      </div>
+    <BLANKLINE>
+      <span class="blogger-avatar">
+        <a href="http://localhost/people/manager/profile/">
+          <img title="Profile of Manager" src="http://localhost/@@profile.avatar/0" />
+        </a>
+      </span>
+    <BLANKLINE>
+      <h3 class="blogger-post-heading">
+        <a class="blogger-post-heading-title" href="http://localhost/space/blog/some-blog-post/">Some Post</a>
+        <span class="blogger-post-location">
+          in
+          <a href="http://localhost/space/blog/">Blog</a>
+        </span>
+      </h3>
+    <BLANKLINE>
+      <div class="blogger-post-byline">
+        Posted by
+        <a href="http://localhost/people/manager/profile/" title="See author's profile">Manager</a>
+        <span class="blogger-post-date">...</span>
+      </div>
+    <BLANKLINE>
+      <div class="blogger-post-content">
+        Post Abstract
+      </div>
+    <BLANKLINE>
+      <div class="blogger-post-read-more">
+        <a href="http://localhost/space/blog/some-blog-post/">Read more...</a>
+     ...
+        <li class="blogger-footer-comments">
+          <a href="http://localhost/space/blog/some-blog-post/#comments" title="Read comments">
+    	0 comments</a>
+        </li>
+     ...
+    </html>
+
+
 
 RSS feed
 
@@ -376,7 +385,7 @@ need recheck generated datetime value
         </item>
       </channel>
     </rss>
-
+    <BLANKLINE>
 
 Delete post
 
