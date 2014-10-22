@@ -52,7 +52,10 @@ class CategoriesVocabulary(object):
 
         categories = []
         for category in context['category'].values():
-            id = ids.getId(removeAllProxies(category))
+            try:
+                id = ids.getId(removeAllProxies(category))
+            except:
+                continue
 
             term = SimpleTerm(id, str(id), category.title)
             term.description = category.description
