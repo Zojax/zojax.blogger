@@ -43,7 +43,10 @@ class BlogView(object):
         self.announce = getUtility(IBloggerProduct).usePostAbstractField
 
     def getPostView(self, idx):
-        post = IBlogPost(self.ids.getObject(idx[1]))
+        try:
+            post = IBlogPost(self.ids.getObject(idx[1]))
+        except KeyError:
+            return None
 
         if self.announce:
             return getMultiAdapter(
