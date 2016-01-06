@@ -4,6 +4,9 @@
    xmlns:zojax="http://namespaces.zope.org/zojax"
    i18n_domain="zojax.blogger">
 
+  <!-- translations -->
+  <i18n:registerTranslations directory="locales" />
+
   <permission
      id="zojax.AddBlogPost"
      title="Add blog post"
@@ -184,9 +187,6 @@
   <utility
      name="zojax.blogger-categories"
      factory=".vocabulary.CategoriesVocabulary" />
-
-  <!-- translations -->
-  <i18n:registerTranslations directory="locales"/>
 
   <zojax:resourceinclude
      name="jquery.bxslider.min.js"

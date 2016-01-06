@@ -16,7 +16,7 @@
 			 id python:repeat['post'].end and 'portlet-blogger-lastpost' or None"
 	 tal:content="structure post">
     </div>
-    <div tal:condition="not:posts">
+    <div tal:condition="not:posts" i18n:translate="">
       There are no blog posts.
     </div>
   </div>

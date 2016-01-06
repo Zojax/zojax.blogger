@@ -1,1 +1,0 @@
-Git does not like empty dirs. Leave this until this dir actually has something.

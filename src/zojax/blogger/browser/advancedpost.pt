@@ -44,8 +44,8 @@
           <li tal:repeat="page view/pages" tal:content="structure page" class="item"></li>
       </ul>
       <div class="visualClear"></div>
-      <a tal:condition="python: len(view.pages)>1" class="show-all" href="#">View As One Page</a>
-      <a tal:condition="python: len(view.pages)>1" class="paginate-post" href="#">View as Slides</a>
+      <a tal:condition="python: len(view.pages)>1" class="show-all" href="#" i18n:translate="">View As One Page</a>
+      <a tal:condition="python: len(view.pages)>1" class="paginate-post" href="#" i18n:translate="">View as Slides</a>
   </div>
 
   <ul class="blogger-footer" tal:condition="view/footer">
@@ -56,7 +56,7 @@
 	  Category</a><tal:block condition="not: repeat/category/end">,</tal:block>
       </tal:block>
     </li>
-    
+
     <li class="blogger-footer-tags" tal:condition="view/tags_list">
       <tal:block tal:repeat="tag view/tags_list">
 	<a href="#tag"  tal:content="tag"
@@ -66,7 +66,7 @@
     </li>
 
     <li class="blogger-footer-comments" tal:condition="view/footer_discussion">
-      <a href="#com" title="Read comments" 
+      <a href="#com" title="Read comments"
 	 i18n:translate="" i18n:attributes="title"
 	 tal:attributes="href string:${view/postUrl}/#comments">
 	<tal:block content="view/comments" i18n:name="number"/> comments</a>
