@@ -240,7 +240,7 @@ msgstr ""
 
 #: zojax/blogger/portlets/category.pt:2
 msgid "Blog categories"
-msgstr ""
+msgstr "Catégories du Blog"
 
 #: zojax/blogger/portlets/interfaces.py:53
 msgid "Number of posts"
