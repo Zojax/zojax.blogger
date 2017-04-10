@@ -17,13 +17,15 @@ $Id$
 """
 from zope import interface, schema
 from zope.i18nmessageid import MessageFactory
-from zojax.richtext.field import RichText
-from zojax.widget.checkbox.field import CheckboxList
+
 from zojax.content.feeds.interfaces import IRSS2Feed
 from zojax.content.type.interfaces import IItem, IContent
 from zojax.content.space.interfaces import IWorkspace, IWorkspaceFactory
 from zojax.content.notifications.interfaces import IContentNotification
+from zojax.filefield.field import ImageField
+from zojax.richtext.field import RichText
 from zojax.security.interfaces import IPermissionCategory
+from zojax.widget.checkbox.field import CheckboxList
 
 _ = MessageFactory('zojax.blogger')
 
@@ -35,9 +37,9 @@ class IBlog(IItem):
     index = interface.Attribute('Primary index')
 
     pageSize = schema.Int(
-        title = _(u'Page size'),
-        description = _(u'Number of entries per page.'),
-        default = 10)
+        title=_(u'Page size'),
+        description=_(u'Number of entries per page.'),
+        default=10)
 
     def entries():
         """List entries names."""
@@ -57,33 +59,38 @@ class IBlogPost(interface.Interface):
     """ Blog post """
 
     title = schema.TextLine(
-        title = _(u'Title'),
-        description = _(u'Post title.'),
-        default = u'',
-        missing_value = u'',
-        required = True)
+        title=_(u'Title'),
+        description=_(u'Post title.'),
+        default=u'',
+        missing_value=u'',
+        required=True)
 
     text = RichText(
-        title = _(u'Text'),
-        description = _(u'Blog post body text.'),
-        required = True)
+        title=_(u'Text'),
+        description=_(u'Blog post body text.'),
+        required=True)
 
     abstract = RichText(
-        title = _(u'Abstract'),
-        description = _(u'Blog post abstract text.'),
-        required = True)
+        title=_(u'Abstract'),
+        description=_(u'Blog post abstract text.'),
+        required=True)
+
+    image = ImageField(
+        title=_(u'Image'),
+        description=_(u'Image for Blog post.'),
+        required=False)
 
     date = schema.Datetime(
-        title = _('Publish Date / Time'),
-        description = _('Post date.'),
-        required = True)
+        title=_('Publish Date / Time'),
+        description=_('Post date.'),
+        required=True)
 
     category = CheckboxList(
-        title = _(u'Category'),
-        description = _('Select category for blog post.'),
-        vocabulary = 'zojax.blogger-categories',
-        default = [],
-        required = False)
+        title=_(u'Category'),
+        description=_('Select category for blog post.'),
+        vocabulary='zojax.blogger-categories',
+        default=[],
+        required=False)
 
     published = schema.Bool(
         title=_(u'Published'),
@@ -108,9 +115,9 @@ class IBloggerProduct(interface.Interface):
     """ product """
 
     usePostAbstractField = schema.Bool(
-        title = _(u'Use post abstract field'),
-        description = _(u'Use post abstract field on post view.'),
-        default = False)
+        title=_(u'Use post abstract field'),
+        description=_(u'Use post abstract field on post view.'),
+        default=False)
 
 
 class IBlogPostView(interface.Interface):
@@ -197,4 +204,3 @@ class IAdvancedBlogPost(IBlogPost):
             schema=IBlogPostPage),
         default=[],
         required=True)
-

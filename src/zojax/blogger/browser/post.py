@@ -15,28 +15,27 @@
 
 $Id$
 """
-import urllib
-from zojax.resourcepackage.library import include
-import re
-from zope.component import getUtility, getMultiAdapter, queryMultiAdapter
-from zope.proxy import removeAllProxies
-from zope.security import checkPermission
-from zope.app.intid.interfaces import IIntIds
-from zope.traversing.browser import absoluteURL
-from zope.cachedescriptors.property import Lazy
 
-from zojax.ownership.interfaces import IOwnership
-from zojax.content.type.interfaces import IDraftedContent
-from zojax.content.forms.content import ContentBasicFields
-from zojax.content.discussion.interfaces import IContentDiscussion
-from zojax.principal.profile.interfaces import IPersonalProfile
+import re
+
+from zope.app.intid.interfaces import IIntIds
+from zope.cachedescriptors.property import Lazy
+from zope.component import getUtility
+from zope.proxy import removeAllProxies
+from zope.traversing.browser import absoluteURL
 
 from zojax.cache.view import cache
 from zojax.cache.keys import ContextModified
 from zojax.cache.timekey import TagTimeKey, each10minutes
+from zojax.content.type.interfaces import IDraftedContent
+from zojax.content.forms.content import ContentBasicFields
+from zojax.content.discussion.interfaces import IContentDiscussion
+from zojax.ownership.interfaces import IOwnership
+from zojax.principal.profile.interfaces import IPersonalProfile
+from zojax.resourcepackage.library import include
 
 from zojax.blogger.cache import BloggerComments
-from zojax.blogger.interfaces import _, IBlog, IBloggerProduct
+from zojax.blogger.interfaces import IBlog, IBloggerProduct
 
 
 class PostContent(ContentBasicFields):
@@ -44,7 +43,7 @@ class PostContent(ContentBasicFields):
     @Lazy
     def fields(self):
         fields = super(PostContent, self).fields
-        fields=fields.omit('published')
+        fields = fields.omit('published')
         if not getUtility(IBloggerProduct).usePostAbstractField:
             return fields.omit('abstract')
         return fields
@@ -72,7 +71,7 @@ class BasePostView(object):
 
         self.post = post
         self.postUrl = absoluteURL(post, request)
-        self.text = getattr(self.context.text,'cooked','')
+        self.text = getattr(self.context.text, 'cooked', '')
         self.biography = profileData.get('about', False)
         self.jobtitle = profileData.get('jobtitle', False)
         if self.biography:
@@ -106,7 +105,7 @@ class BasePostView(object):
             self.avatar_url = '#'
 
         if space is not None:
-            self.profile_url = '%s/profile/'%absoluteURL(space, request)
+            self.profile_url = '%s/profile/' % absoluteURL(space, request)
 
         # discussion
         discussion = IContentDiscussion(post, None)
@@ -146,7 +145,7 @@ class PostBlogView(BasePostView):
     def update(self):
         super(PostBlogView, self).update()
 
-        self.url = u'%s/'%absoluteURL(self.post, self.request)
+        self.url = u'%s/' % absoluteURL(self.post, self.request)
 
     @cache('pagelet:blog.post+blog', ContextModified,
            TagTimeKey(BloggerComments, each10minutes))
@@ -161,7 +160,7 @@ class PostAnnounceView(PostBlogView):
     def update(self):
         super(PostAnnounceView, self).update()
 
-        self.url = u'%s/'%absoluteURL(self.post, self.request)
+        self.url = u'%s/' % absoluteURL(self.post, self.request)
 
         if getUtility(IBloggerProduct).usePostAbstractField and \
                 self.context.abstract is not None:

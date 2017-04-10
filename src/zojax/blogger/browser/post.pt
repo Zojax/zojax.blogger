@@ -34,8 +34,11 @@
 	  tal:content="structure formatter:fancyDatetime,medium:context/date">Dec 16, 2008</span>
   </div>
 
-  <div class="blogger-post-content"
-       tal:content="structure view/text">
+  <div class="blogger-post-content">
+       <img class="main-image"
+            tal:condition="context/image"
+            tal:attributes="src string:${view/postUrl}/++attribute++image/${context/image/filename}" />
+       <tal:text content="structure view/text" />
   </div>
 
   <ul class="blogger-footer" tal:condition="view/footer">
@@ -46,7 +49,7 @@
 	  Category</a><tal:block condition="not: repeat/category/end">,</tal:block>
       </tal:block>
     </li>
-    
+
     <li class="blogger-footer-tags" tal:condition="view/tags_list">
       <tal:block tal:repeat="tag view/tags_list">
 	<a href="#tag"  tal:content="tag"
@@ -56,7 +59,7 @@
     </li>
 
     <li class="blogger-footer-comments" tal:condition="view/footer_discussion">
-      <a href="#com" title="Read comments" 
+      <a href="#com" title="Read comments"
 	 i18n:translate="" i18n:attributes="title"
 	 tal:attributes="href string:${view/postUrl}/#comments">
 	<tal:block content="view/comments" i18n:name="number"/> comments</a>

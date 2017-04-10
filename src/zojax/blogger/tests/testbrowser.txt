@@ -100,7 +100,7 @@ Create blog post
     >>> print admin.contents
     <html>
     ...
-    <div class="statusMessage">Your Blog post has been published.</div>
+    <div class="statusMessage">Your Blog post has been published.</div>...
     ...
       <div class="blogger-comments-label">
         <a title="Go to post comments" href="#comments">
@@ -126,7 +126,12 @@ Create blog post
         Posted by
         <a href="http://localhost/people/manager/profile/" title="See author's profile">Manager</a>
     ...
-      <div class="blogger-post-content">Post Text</div>
+      </div>
+    <BLANKLINE>
+      <div class="blogger-post-content">
+    <BLANKLINE>
+           Post Text
+      </div>
     ...
     </html>
 
@@ -275,7 +280,10 @@ We see post text in recent blog posts portlet
         <span class="blogger-post-date">...</span>
       </div>
     <BLANKLINE>
-      <div class="blogger-post-content">Post Text</div>
+      <div class="blogger-post-content">
+    <BLANKLINE>
+           Post Text
+      </div>
     <BLANKLINE>
       <ul class="blogger-footer">
     <BLANKLINE>
@@ -288,19 +296,19 @@ We see post text in recent blog posts portlet
      ...
      </html>
 
-        
+
 We can use abstract field for abstract paragraph
-    
+
     >>> admin.open('http://localhost/settings/product/blogger')
     >>> admin.getControl(name='configlet.widgets.usePostAbstractField:list').value = ['true']
     >>> admin.getControl('Save').click()
-    
+
 We set abstract in edit form
 
     >>> admin.open('http://localhost/space/blog/some-blog-post/context.html')
     >>> admin.getControl('Abstract').value = 'Post Abstract'
     >>> admin.getControl('Save', index=1).click()
-    
+
 Now we see abstract instead of text
     >>> admin.open('http://localhost/testrecent.html')
     >>> print admin.contents

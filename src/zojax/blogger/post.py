@@ -1,11 +1,3 @@
-from zojax.content.draft.browser.adding import AddContentWizard
-from zojax.content.forms.content import ContentStep
-from zojax.content.forms.interfaces import IEditContentWizard, IAddContentWizard
-from zojax.content.forms.wizardedit import EditContentWizard
-from zojax.resourcepackage.library import include
-from zojax.wizard.interfaces import ISaveable
-
-
 ##############################################################################
 #
 # Copyright (c) 2009 Zope Foundation and Contributors.
@@ -24,18 +16,25 @@ from zojax.wizard.interfaces import ISaveable
 $Id$
 """
 
+import pytz
+from datetime import datetime
 from rwproperty import setproperty, getproperty
 
 from zope import interface, component
-from datetime import datetime
-import pytz
+from zope.dublincore.interfaces import IDCPublishing
 from zope.location import LocationProxy
 from zope.publisher.interfaces import IPublishTraverse, NotFound, Unauthorized
 from zope.schema.fieldproperty import FieldProperty
-from zope.dublincore.interfaces import IDCPublishing
-from zojax.richtext.field import RichTextProperty
+
+from zojax.content.forms.content import ContentStep
+from zojax.content.forms.interfaces import IEditContentWizard
+from zojax.content.forms.wizardedit import EditContentWizard
 from zojax.content.type.item import PersistentItem
 from zojax.content.type.searchable import ContentSearchableText
+from zojax.filefield.field import FileFieldProperty
+from zojax.resourcepackage.library import include
+from zojax.richtext.field import RichTextProperty
+from zojax.wizard.interfaces import ISaveable
 
 from interfaces import IBlogPost, IAdvancedBlogPost
 
@@ -45,6 +44,7 @@ class BlogPost(PersistentItem):
 
     text = RichTextProperty(IBlogPost['text'])
     abstract = RichTextProperty(IBlogPost['abstract'])
+    image = FileFieldProperty(IBlogPost['image'])
     category = FieldProperty(IBlogPost['category'])
 
     @getproperty
@@ -65,10 +65,10 @@ class BlogPost(PersistentItem):
         publishing = IDCPublishing(self)
         publishing.effective = value
         self.__dict__['date'] = publishing.effective
-        if datetime.now(pytz.utc)>=self.date:
-            self.__dict__['published']=True
+        if datetime.now(pytz.utc) >= self.date:
+            self.__dict__['published'] = True
         else:
-            self.__dict__['published']=False
+            self.__dict__['published'] = False
         self._p_changed = True
 
 
@@ -104,7 +104,8 @@ class AdvancedBlogPost(BlogPost):
 
     @property
     def text(self):
-        return ''.join([getattr(page.text, 'cooked', '') for page in self.pages])
+        return ''.join(
+            [getattr(page.text, 'cooked', '') for page in self.pages])
 
 
 class PostSearchableText(ContentSearchableText):
@@ -142,7 +143,8 @@ class Pages(object):
     def publishTraverse(self, request, name):
         context = self.context
         try:
-            return LocationProxy(context.pages[int(name)-1], self.context, name)
+            return LocationProxy(
+                context.pages[int(name) - 1], self.context, name)
         except ValueError, e:
             # 403 error
             raise Unauthorized("Access to images folder denied")
